@@ -1,0 +1,37 @@
+<% provide(:title, "レビューを編集する") %>
+
+<h1>レビューを編集する</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+    <%= form_for(@review, url: novel_review_path, method: :patch) do |f| %>
+      <%= render 'shared/error_explanation', model: f.object %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+       
+      <section class="review_title">
+        <h3>ひとこと紹介</h3>
+        <p>この小説の魅力をひとことでご記入ください</p>
+        <%= f.text_field :title, class: 'form-control' %>
+      </section>
+      <section class="review_text">
+        <h3>レビュー本文</h3>
+        <p>小説を読んで面白かった点や感動した点などをご記入ください</p>
+        <%= f.text_area :text, class: 'form-control' %>
+      </section>
+      <%= f.submit "編集", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <section>
+      <h3>おすすめレビューについて</h3>
+      <p>おすすめレビューは、あなたが感じたこの小説の魅力を伝えられる場所です。</p>
+    </section>
+    <section>
+      <h3>使用上の注意</h3>
+      <p>以下のような投稿はお控えください。</p>
+      <p>* 作者への誹謗中傷</p>
+      <p>* ネタバレを含む投稿</p>
+      <p>* 小説とは関係のない投稿</p>
+    </section>
+  </div>
+</div>

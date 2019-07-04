@@ -1,0 +1,54 @@
+<% provide(:title, "小説基本情報編集") %>
+
+<h1>基本情報</h1>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= form_for(@novel, url: novel_path, method: :patch) do |f| %>
+    <%= render 'shared/error_explanation', model: f.object %>
+      <section class="novel_title">
+        <h3>作品タイトル</h3>
+        <%= f.text_field :title, class: 'form-control' %>
+      </section>
+      <section class="novel_catchphrase">
+        <h3>キャッチコピー</h3>
+        <p>作品に相応しいキャッチコピーをつけることができます。</p>
+        <%= f.text_field :catchphrase, class: 'form-control' %>
+      </section>
+      <section class="novel_outline">
+        <h3>概要</h3>
+        <p>あらすじや登場人物など、小説の情報を記入できます。</p>
+        <%= f.text_area :outline, class: 'form-control' %>
+      </section>
+      <section class="novel_genre">
+        <h3>種類/ジャンル</h3>
+        <p>当てはまるジャンルを1つ選んでください。</p>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+      </section>
+      <section class="novel_keyword">
+        <h3>関連キーワード</h3>
+        <p>小説のテーマや特徴に関連したキーワードを最大5つまで設定できます。</p>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.text_field :keyword_one, class: 'input-small' %>
+              <%= f.text_field :keyword_two, class: 'input-small' %>
+              <%= f.text_field :keyword_three, class: 'input-small' %>
+              <%= f.text_field :keyword_four, class: 'input-small' %>
+              <%= f.text_field :keyword_five, class: 'input-small' %>
+            </div>
+          </div>
+        <p>(キーワード例): 探偵、ライトノベル、純文学、グルメ、異世界転生、スペースオペラ、短編
+      </section>
+      <section class="novel_tag">
+        <h3>進捗状況</h3>
+        <p>どちらかを選択してください。</p>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+          <%= tag.check_box %>
+          <%= tag.label { tag.text } %>
+        <% end %>
+      </section>
+      
+      <%= f.submit "編集", class: 'btn btn-primary' %>
+    <% end %>  
+  </div>
+</div>

@@ -1,0 +1,156 @@
+<% provide(:title, @novel.title) %>
+
+<h1><%= @novel.title %></h1>
+<h2>
+  <% @novel.tags.each do |tag| %>
+    <span class="badge badge-light"><%= tag.name %></span>
+  <% end %> 
+</h2>
+<span class="author">
+  <h3>作者: <%= @novel.user.field %></h3>
+</span>
+<span class="favorite">
+  <% if current_user.favnovel?(@novel) %>
+    <%= form_for(current_user.favorites.find_by(novel_id: @novel.id), html: { method: :delete }, remote: true) do |f| %>
+      <%= hidden_field_tag :novel_id, @novel.id %>
+      <%= button_tag( class: 'btn btn-info') do %>
+        <%= content_tag :p, "本棚から外す", class: 'glyphicon glyphicon-star' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.favorites.build, url: favorites_path, remote: true) do |f| %>
+      <%= hidden_field_tag :novel_id, @novel.id %>
+      <%= button_tag( class: 'btn btn-dark') do %>
+      　　<%= content_tag :p, "本棚に入れる", class: 'glyphicon glyphicon-star' %>
+    　<% end %>
+    <% end %>
+  <% end %>  
+</span>
+
+<div class="col-md-10 col-md-offset-1">
+  <nav class="nav navbar-ligth bg-ligth">
+    <ul class="nav navbar-nav">
+      <li><%= link_to "小説の概要", "#" %></li>
+      <li><%= link_to "目次", "#" %></li>
+      <li><%= link_to "おすすめレビュー", "#" %></li>
+      <li><%= link_to "小説情報", "#" %></li>
+      <li><%= link_to "作者について", "#" %></li>
+      <li><%= link_to "その他", "#" %></li>
+    </ul>
+  </nav>
+  <section class="outline_field">
+    <h3>小説の概要</h3>
+    <div class="row">
+      <div class="col-md-5">
+        <h4><%= @novel.catchphrase %></h4>
+      </div>
+      <div class="col-md-5">
+        <p>
+          <%= @novel.outline %>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="contents_field">
+    <h3>目次</h3>
+    <% if @stories.any? %>
+      <ul class="stories">
+        <%= render @stories %>
+      </ul>
+      <%= will_paginate @stories %>
+    <% end %>
+  </section>
+  <section class="reviews_field">
+    <h3>おすすめレビュー</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <span class="review_edit"><%= link_to "おすすめレビューを書く", new_novel_review_path(@novel.id) %></span>
+      </div>
+      <% if @reviews.any? %>
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="reviews">
+              <%= render @reviews %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+  <section class="infomation_field">
+    <h3>小説情報</h3>
+    <h4><%= @novel.title %></h4>
+    <h5><%= @novel.user.field %></h5>
+    <dl>
+      <dt>執筆状況</dt>
+      <dd>
+        <% @novel.tags.each do |tag| %>
+          <%= tag.name %>
+        <% end %> 
+      </dd>
+      <dt>エピソード</dt>
+      <dd>〇話</dd>
+      <dt>ジャンル</dt>
+      <dd><%= @novel.genre.name %></dd>
+      <dt>関連キーワード</dt>
+      <dd>
+        <% if !@novel.keyword_five.nil? %>
+          <%= @novel.keyword_one %> <%= @novel.keyword_two %> <%= @novel.keyword_three %> <%= @novel.keyword_four %> <%= @novel.keyword_five %>
+        <% elsif @novel.keyword_one.nil? %>
+          未設定
+        <% elsif @novel.keyword_two.nil? %>
+          <%= @novel.keyword_one %>
+        <% elsif @novel.keyword_three.nil? %>
+          <%= @novel.keyword_one %> <%= @novel.keyword_two %>
+        <% elsif @novel.keyword_four.nil? %>
+          <%= @novel.keyword_one %> <%= @novel.keyword_two %> <%= @novel.keyword_three %>
+        <% elsif @novel.keyword_five.nil? %>
+          <%= @novel.keyword_one %> <%= @novel.keyword_two %> <%= @novel.keyword_three %> <%= @novel.keyword_four %>
+        <% end %>
+      </dd>
+      <dt>おすすめレビュー</dt>
+      <dd><%= @reviews.count %>人</dd>
+      <dt>本棚にいれた人</dt>
+      <dd><%= @favorites.count %>人</dd>
+    </dl>
+  </section>
+  <section class="author_field">
+    <h3>作者について</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <h4><%= link_to @novel.user.field, @novel.user %></h4>
+        <h5><%= link_to @novel.user.name, @novel.user %><h5>
+        <p><%= @novel.user.introduction %></p>
+      </div>
+      <div class="col-md-6">
+        <h4>小説一覧</h4>
+        <ul class="novels">
+          <% @novels.each do |novel| %>
+            <li>
+              <h4><%= link_to novel.title, novel %></h4>
+              <section class="novel_information">
+                <p>ジャンル: <%= novel.genre.name %></p>
+                  <% if !novel.keyword_five.nil? %>
+                    <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %> <%= novel.keyword_five %></p>
+                  <% elsif novel.keyword_one.nil? %>
+                    <p>関連キーワード: 未設定</p>
+                  <% elsif novel.keyword_two.nil? %>
+                    <p>関連キーワード: <%= novel.keyword_one %></p>
+                  <% elsif novel.keyword_three.nil? %>
+                    <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %></p>
+                  <% elsif novel.keyword_four.nil? %>
+                    <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %></p>
+                  <% elsif novel.keyword_five.nil? %>
+                    <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %></p>
+                  <% end %>
+                <span class="update_date">更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
+                <span class="glyphicon glyphicon-star" area-hidden="true"></span><%= @favorites.count %> 
+              </section>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+

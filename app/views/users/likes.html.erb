@@ -1,0 +1,40 @@
+<% provide(:title, "本棚") %>
+
+<div class="row">
+  <header>
+    <aside class="col-md-2">
+      <section class="user-name">
+        <% if !@user.field.nil? %>
+          <h3><%= @user.field %></h3>
+        <% else %>
+          <h3>@ <%= @user.name %></h3>
+        <% end %>
+        <p>@ <%= @user.name %></p>
+      </section>
+    </aside>
+  <div class="col-md-6">
+    <span><%= simple_format @user.introduction %></span>
+  </div>
+  <div class="col-md-10 col-md-offset-1">
+    <nav class="nav navbar-ligth bg-ligth">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "概要", "#" %></li>
+        <li><%= link_to "小説", colection_user_path %></li>
+        <li><%= link_to "本棚", likes_user_path %></li>
+        <li><%= link_to "近況ノート", recent_user_path %></li>
+        <li><%= link_to "おすすめレビュー", "#" %></li>
+        <li><%= link_to "フォロー", "#" %></li>
+      </ul>
+    </nav>
+  </div>
+  </header>
+  <% if @user.favorites.any? %>
+    <div class="col-md-10 col-md-offset-1">
+      <h3>本棚 (<%= @user.favorites.count %>)</h3>
+      <ul class="favorites">
+        <%= render @favorites %>
+      </ul>
+      <%= will_paginate @favorites %>
+    </div>
+  <% end %>
+</div>

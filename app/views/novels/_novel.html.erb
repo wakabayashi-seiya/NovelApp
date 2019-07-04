@@ -1,0 +1,38 @@
+<li>
+  <div class="row">
+    <div class="col-md-5">
+      <h3><%= link_to novel.title, novel %></h3>
+      <% if current_user == novel.user %>
+        <p>        
+          <%= link_to "(編集)", edit_novel_path(novel) %> | <%= link_to "(作品を削除する)", novel, method: :delete, 
+                                                             data: { confirm: "作品を削除します。本当によろしいですか？"}  %>          
+        </p>             
+      <% end %>
+      <span class="novel_user">著者名: <%= link_to novel.user.field, novel.user %></span>
+      <span class="novel_outline">あらすじ: <%= simple_format novel.outline %></span>
+    </div>
+    <div class="col-md-5">
+      <section class="novel_information">
+        <p>ジャンル: <%= novel.genre.name %></p>
+          <% if !novel.keyword_five.nil? %>
+            <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %> <%= novel.keyword_five %></p>
+          <% elsif novel.keyword_one.nil? %>
+            <p>関連キーワード: 未設定</p>
+          <% elsif novel.keyword_two.nil? %>
+            <p>関連キーワード: <%= novel.keyword_one %></p>
+          <% elsif novel.keyword_three.nil? %>
+            <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %></p>
+          <% elsif novel.keyword_four.nil? %>
+            <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %></p>
+          <% elsif novel.keyword_five.nil? %>
+            <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %></p>
+          <% end %>
+        <span class="update_date">更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
+        <span class="glyphicon glyphicon-star" area-hidden="true"></span><%= novel.favorites.count %>
+      </section>
+      <section class="new_episode">
+        <%= link_to "エピソードを執筆する", new_novel_story_path(novel.id) %>
+      </section>
+    </div>
+  </div>
+</li>

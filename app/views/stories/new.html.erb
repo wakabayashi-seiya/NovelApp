@@ -1,0 +1,21 @@
+<% provide(:title, "新しいエピソードを執筆") %>
+
+<h1>新しいエピソードを執筆</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@story, url: novel_stories_path) do |f| %>
+      <%= render 'shared/error_explanation', model: f.object %>
+      <section class="story_title">
+      <%= f.text_field :title, class: 'form-control', :placeholder => "(例) 第〇話 □□□□□" %>
+      </section>
+      
+      <section class="story_text">
+      <%= f.label :text, "本文" %>
+      <%= f.text_area :text, cols: "80", rows: "80", class: 'form-control' %>
+      </section>
+    
+      <%= f.submit "公開", class: 'btn btn-primary' %>
+    <% end %> 
+  </div>
+</div>

@@ -1,0 +1,11 @@
+ <% if current_user.favnovel?(@novel) %>
+    <%= form_for(current_user.favorites.find_by(novel_id: @novel.id), html: { method: :delete }, remote: true) do |f| %>
+      <%= hidden_field_tag :novel_id, @novel.id %>
+      <%= f.submit "本棚から外す", class: 'btn btn-primary' %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.favorites.build, url: favorites_path, remote: true) do |f| %>
+      <%= hidden_field_tag :novel_id, @novel.id %>
+      <%= f.submit "本棚に入れる", class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>  
