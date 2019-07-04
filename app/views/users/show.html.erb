@@ -1,0 +1,29 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <header>
+    <aside class="col-md-2">
+      <section class="user-name">
+        <h3><%= @user.field %></h3>
+        <p>@ <%= @user.name %></p>
+      </section>
+    </aside>
+  <div class="col-md-6">
+    <span><%= simple_format @user.introduction %></span>
+  </div>
+  <div class="col-md-10 col-md-offset-1">
+    <nav class="nav navbar-ligth bg-ligth">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "概要", "#" %></li>
+        <li><%= link_to "小説", colection_user_path %></li>
+        <li><%= link_to "本棚", likes_user_path %></li>
+        <li><%= link_to "近況ノート", recent_user_path %></li>
+        <li><%= link_to "おすすめレビュー", "#" %></li>
+        <li><%= link_to "フォロー", "#" %></li>
+      </ul>
+    </nav>
+  </div>
+  </header>
+  <div class="col-md-10 col-md-offset-1">
+    <%= @user.name %>
+  </div>
+</div>

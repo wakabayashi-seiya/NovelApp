@@ -1,0 +1,37 @@
+<% provide(:title, "小説を探す") %>
+
+<div class="row">
+  <div class="col-md-7 col-md-offset-1">
+    <section class="from_genre">
+      <h3>ジャンルから探す</h3>
+      <ul>
+        <li class="genre_sf"><%= link_to "SF", sf_path %></li>
+        <li class="genre_df"><%= link_to "異世界ファンタジー", dw_path %></li>
+        <li class="genre_cf"><%= link_to "現代ファンタジー", cw_path %></li>
+      </ul>
+      <ul>
+        <li class="genre_love"><%= link_to "恋愛", love_path %></li>
+        <li class="genre_horror"><%= link_to "ホラー", horror_path %></li>
+        <li class="genre_mystery"><%= link_to "ミステリー", mystery_path %></li>
+      </ul>
+      <ul>
+        <li class="genre_suspense"><%= link_to "サスペンス", suspense_path %></li>
+        <li class="genre_essay"><%= link_to "エッセイ", essay_path %></li>
+        <li class="genre_history"><%= link_to "歴史・伝奇", history_path %></li>
+      </ul>
+    </section>
+    <section class="from_complete_or_incomplete">
+      <h3>執筆状況から探す</h3>
+      <ul>
+        <li><%= link_to "連載中", complete_path %></li>
+        <li><%= link_to "完結", incomplete_path %></li>
+      </ul>
+    </section>
+  </div>
+  <div class="col-md-3">
+    <section>
+      <h3>小説を探すについて</h3>
+      <p>ここでは、様々な検索機能を用いて、小説を探すことができます。</p>
+    </section>
+  </div>
+</div>

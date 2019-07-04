@@ -1,0 +1,19 @@
+<% provide(:title, "近況ノート編集") %>
+
+<h1>近況ノート編集</h1>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for(@note, url: note_path, method: :patch) do |f| %>
+      <%= render 'shared/error_explanation', model: f.object %>
+      
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, class: 'form-control' %>
+      
+      <%= f.label :text, "本文" %>
+      <%= f.text_area :text, class: 'form-control' %>
+      
+      <%= f.submit "編集", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

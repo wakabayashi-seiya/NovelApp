@@ -1,0 +1,39 @@
+<%= provide(:title, "近況ノート投稿") %>
+
+<h1>近況ノートの新しい記事を作成</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+    <%= form_for(@note, url: notes_path) do |f| %>
+      <%= render 'shared/error_explanation', model: f.object %>
+      
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, class: 'form-control' %>
+      
+      <%= f.label :text, "本文" %>
+      <%= f.text_area :text, class: 'form-control' %>
+      
+      <%= f.submit "公開", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <section>
+      <h3>近況ノートについて</h3>
+      <p>
+        近況ノートは、創作活動の近況や読書日記などを伝えられる場所です。ご自由にご記入ください。
+      </p>
+    </section>
+    <section>
+      <h3>使用上の注意</h3>
+      <p>
+        以下の点にご注意ください
+      </p>
+      <p>
+        * 第三者を傷つけるような発言
+      </p>
+      <p>
+        * 個人情報の記載
+      </p>
+    </section>
+  </div>
+</div>

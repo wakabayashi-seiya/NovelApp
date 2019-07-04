@@ -1,0 +1,11 @@
+<h1>Academia</h1>
+<p><%= @user.name %>さん</p>
+<p>
+  この度は、論文掲載サイト『Academia』の新規会員登録をお申込みいただき、誠にありがとうございます。 
+  新規会員登録を完了させるには、以下のURLをクリックして、引き続き、登録手続き（本登録）をお願いいたします。
+</p>
+<p>
+  ※現段階では、まだ会員登録は完了しておりません。
+</p>
+
+<%= link_to "登録手続き（本登録）", edit_account_activation_url(@user.activation_token, email: @user.email) %>

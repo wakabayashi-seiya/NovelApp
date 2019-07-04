@@ -1,0 +1,12 @@
+<% provide(:title, @note.title) %>
+
+<h1><%= @note.title %></h1>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <span><%= simple_format @note.text %></span>
+  </div>
+  <div class="col-md-3 col-md-offset-7">
+    <span class="back"><%= link_to "ユーザーページに戻る", "#" %></span>
+  </div>
+</div>

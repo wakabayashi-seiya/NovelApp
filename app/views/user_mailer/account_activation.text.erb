@@ -1,0 +1,8 @@
+<%= @user.name %>さん
+
+この度は、論文掲載サイト『Academia』の新規会員登録をお申込みいただき、誠にありがとうございます。
+新規会員登録を完了させるには、以下のURLをクリックして、引き続き、登録手続き（本登録）をお願いいたします。
+
+※現段階では、まだ会員登録は完了しておりません。
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

@@ -1,0 +1,15 @@
+<li>
+  <span class="review_title_name">
+    <%= review.title %>
+  </span>      
+  <span class="review_user">  <%= link_to review.user.field, review.user %></span>
+  <span class="review_text_field">
+    <%= simple_format review.text %>
+  </span>
+  <% if current_user == review.user %>
+  <span class="edit_delete"><%= link_to "編集", edit_novel_review_path(review.novel.id, review.id) %> | <%= link_to "削除",
+                                                                                                       novel_review_path(review.novel.id, review.id),
+                                                                                                       method: :delete,
+                                                                                                       data: { confirm: "本当によろしいですか？" } %></span>
+  <% end %>
+</li>

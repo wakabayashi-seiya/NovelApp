@@ -1,0 +1,27 @@
+<li>
+  <div class="row">
+    <div class="col-md-5">
+      <h3><%= link_to favorite.novel.title, favorite.novel %></h3>
+      <span class="novel_user">著者名: <%= link_to favorite.novel.user.name, favorite.novel.user %></span>
+      <span class="novel_outline">あらすじ: <%= simple_format favorite.novel.outline %></span>
+    </div>
+    <div class="col-md-5">
+      <section class="novel_information">
+        <p>ジャンル: <%= favorite.novel.genre.name %></p>
+          <% if !favorite.novel.keyword_five.nil? %>
+            <p>関連キーワード: <%= favorite.novel.keyword_one %> <%= favorite.novel.keyword_two %> <%= favorite.novel.keyword_three %> <%= favorite.novel.keyword_four %> <%= favorite.novel.keyword_five %></p>
+          <% elsif favorite.novel.keyword_one.nil? %>
+            <p>関連キーワード: 未設定</p>
+          <% elsif favorite.novel.keyword_two.nil? %>
+            <p>関連キーワード: <%= favorite.novel.keyword_one %></p>
+          <% elsif favorite.novel.keyword_three.nil? %>
+            <p>関連キーワード: <%= favorite.novel.keyword_one %> <%= favorite.novel.keyword_two %></p>
+          <% elsif favorite.novel.keyword_four.nil? %>
+            <p>関連キーワード: <%= favorite.novel.keyword_one %> <%= favorite.novel.keyword_two %> <%= favorite.novel.keyword_three %></p>
+          <% elsif favorite.novel.keyword_five.nil? %>
+            <p>関連キーワード: <%= favorite.novel.keyword_one %> <%= favorite.novel.keyword_two %> <%= favorite.novel.keyword_three %> <%= favorite.novel.keyword_four %></p>
+          <% end %>
+      </section>
+    </div>
+  </div>
+</li>

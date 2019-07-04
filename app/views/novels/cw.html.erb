@@ -1,0 +1,14 @@
+<% provide(:title, "現代ファンタジーの小説") %>
+
+<h1>現代ファンタジーの小説</h1>
+
+<% if @novels.any? %>
+  <div class="col-md-10 col-md-offset-1">
+    <h3>小説 (<%= @novels.count %>)</h3>
+    <ul class="novels">
+      <%= render @novels %>
+    </ul>
+  </div>
+<% else %>
+  <h3>まだこのジャンルの小説は投稿されていません。</h3>  
+<% end %>
