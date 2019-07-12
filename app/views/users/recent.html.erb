@@ -4,26 +4,21 @@
   <header>
     <aside class="col-md-2">
       <section class="user-name">
-        <% if !@user.field.nil? %>
-          <h3><%= @user.field %></h3>
-        <% else %>
-          <h3>@ <%= @user.name %></h3>
-        <% end %>
+        <h3><%= @user.field %></h3>
         <p>@ <%= @user.name %></p>
+        <p>登録日: <%= @user.created_at.strftime("%Y-%m-%d") %> </p>
       </section>
     </aside>
   <div class="col-md-6">
-    <span><%= simple_format @user.introduction %></span>
+    <p><%= simple_format @user.introduction %></p>
   </div>
   <div class="col-md-10 col-md-offset-1">
     <nav class="nav navbar-ligth bg-ligth">
       <ul class="nav navbar-nav">
-        <li><%= link_to "概要", "#" %></li>
         <li><%= link_to "小説", colection_user_path %></li>
         <li><%= link_to "本棚", likes_user_path %></li>
         <li><%= link_to "近況ノート", recent_user_path %></li>
-        <li><%= link_to "おすすめレビュー", "#" %></li>
-        <li><%= link_to "フォロー", "#" %></li>
+        <li><%= link_to "おすすめレビュー", comment_user_path %></li>
       </ul>
     </nav>
   </div>

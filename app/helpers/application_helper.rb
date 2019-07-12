@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def full_title(page_title ="")
-    base_title = "Academic_app"
+    base_title = "ビブリオテック"
     if page_title.empty?
       base_title
     else

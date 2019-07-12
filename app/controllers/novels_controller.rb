@@ -43,7 +43,7 @@ class NovelsController < ApplicationController
   end
   
   def index
-    @novels = Novel.all
+    @novels = Novel.paginate(page: params[:page]).search(params[:search])
   end
   
   def search
@@ -51,64 +51,64 @@ class NovelsController < ApplicationController
   
   def sf
     @genre = Genre.first
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def dw
     @genre = Genre.find(2)
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def cw
     @genre = Genre.find(3)
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def love
     @genre = Genre.find(4)
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def horror
     @genre = Genre.find(5)
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def mystery
     @genre = Genre.find(6)
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def suspense
     @genre = Genre.find(7)
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def essay
     @genre = Genre.find(8)
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def history
     @genre = Genre.find(9)
-    @novels = @genre.novels.all
+    @novels = @genre.novels.reverse_order
   end
   
   def complete
     @tag = Tag.find(1)
-    @novels = @tag.novels.all
+    @novels = @tag.novels.reverse_order
   end
   
   def incomplete
     @tag = Tag.find(2)
-    @novels = @tag.novels.all
+    @novels = @tag.novels.reverse_order
   end
   
     
   private
   
     def novel_params
-      params.require(:novel).permit(:title, :catchphrase, :outline, :genre_id,
+      params.require(:novel).permit(:title, :catchphrase, :outline, :genre_id, :image,
                                     :keyword_one, :keyword_two, :keyword_three, :keyword_four, :keyword_five,
                                     tag_ids: [])
     end

@@ -1,44 +1,56 @@
 <% provide(:title, @novel.title) %>
 
+<h1>
+<% if @novel.image? %>
+  <%= image_tag @novel.image.url, size: '150x200' %>
+<% else %>
+  <%= image_tag("book-icon.png", size: '150x200') %>
+<% end %>
+</h1>
+
 <h1><%= @novel.title %></h1>
+<span class="author">
+  <h3>作者: <%= @novel.user.field %></h3>
+</span>
 <h2>
   <% @novel.tags.each do |tag| %>
     <span class="badge badge-light"><%= tag.name %></span>
   <% end %> 
 </h2>
-<span class="author">
-  <h3>作者: <%= @novel.user.field %></h3>
-</span>
+
 <span class="favorite">
-  <% if current_user.favnovel?(@novel) %>
-    <%= form_for(current_user.favorites.find_by(novel_id: @novel.id), html: { method: :delete }, remote: true) do |f| %>
-      <%= hidden_field_tag :novel_id, @novel.id %>
-      <%= button_tag( class: 'btn btn-info') do %>
-        <%= content_tag :p, "本棚から外す", class: 'glyphicon glyphicon-star' %>
+  <% if !current_user.nil? %>
+    <% if current_user.favnovel?(@novel) %>
+      <%= form_for(current_user.favorites.find_by(novel_id: @novel.id), html: { method: :delete }, remote: true) do |f| %>
+        <%= hidden_field_tag :novel_id, @novel.id %>
+        <%= button_tag( class: 'btn btn-dark') do %>
+          <%= content_tag :p, "", class: 'glyphicon glyphicon-star' %>
+          <p>本棚から外す</p>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= form_for(current_user.favorites.build, url: favorites_path, remote: true) do |f| %>
+        <%= hidden_field_tag :novel_id, @novel.id %>
+        <%= button_tag( class: 'btn btn-info') do %>
+          <%= content_tag :p, "", class: 'glyphicon glyphicon-star' %>
+          <p>本棚に追加</p>
+    　   <% end %>
       <% end %>
     <% end %>
-  <% else %>
-    <%= form_for(current_user.favorites.build, url: favorites_path, remote: true) do |f| %>
-      <%= hidden_field_tag :novel_id, @novel.id %>
-      <%= button_tag( class: 'btn btn-dark') do %>
-      　　<%= content_tag :p, "本棚に入れる", class: 'glyphicon glyphicon-star' %>
-    　<% end %>
-    <% end %>
-  <% end %>  
+  <% end %>
 </span>
 
 <div class="col-md-10 col-md-offset-1">
   <nav class="nav navbar-ligth bg-ligth">
     <ul class="nav navbar-nav">
-      <li><%= link_to "小説の概要", "#" %></li>
-      <li><%= link_to "目次", "#" %></li>
-      <li><%= link_to "おすすめレビュー", "#" %></li>
-      <li><%= link_to "小説情報", "#" %></li>
-      <li><%= link_to "作者について", "#" %></li>
-      <li><%= link_to "その他", "#" %></li>
+      <li><%= link_to "小説の概要", "#outline_field" %></li>
+      <li><%= link_to "目次", "#contents_field" %></li>
+      <li><%= link_to "おすすめレビュー", "#reviews_field" %></li>
+      <li><%= link_to "小説情報", "#infomation_field" %></li>
+      <li><%= link_to "作者について", "#author_field" %></li>
     </ul>
   </nav>
-  <section class="outline_field">
+  <section id="outline_field">
     <h3>小説の概要</h3>
     <div class="row">
       <div class="col-md-5">
@@ -46,12 +58,12 @@
       </div>
       <div class="col-md-5">
         <p>
-          <%= @novel.outline %>
+          <%= simple_format @novel.outline %>
         </p>
       </div>
     </div>
   </section>
-  <section class="contents_field">
+  <section id="contents_field">
     <h3>目次</h3>
     <% if @stories.any? %>
       <ul class="stories">
@@ -60,7 +72,7 @@
       <%= will_paginate @stories %>
     <% end %>
   </section>
-  <section class="reviews_field">
+  <section id="reviews_field">
     <h3>おすすめレビュー</h3>
     <div class="row">
       <div class="col-md-4">
@@ -77,7 +89,7 @@
       <% end %>
     </div>
   </section>
-  <section class="infomation_field">
+  <section id="infomation_field">
     <h3>小説情報</h3>
     <h4><%= @novel.title %></h4>
     <h5><%= @novel.user.field %></h5>
@@ -88,8 +100,6 @@
           <%= tag.name %>
         <% end %> 
       </dd>
-      <dt>エピソード</dt>
-      <dd>〇話</dd>
       <dt>ジャンル</dt>
       <dd><%= @novel.genre.name %></dd>
       <dt>関連キーワード</dt>
@@ -114,7 +124,7 @@
       <dd><%= @favorites.count %>人</dd>
     </dl>
   </section>
-  <section class="author_field">
+  <section id="author_field">
     <h3>作者について</h3>
     <div class="row">
       <div class="col-md-4">

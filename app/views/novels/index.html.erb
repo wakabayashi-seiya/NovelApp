@@ -1,10 +1,14 @@
-<% provide(:title, "小説を探す") %>
+<% provide(:title, "検索結果") %>
 
-<div class="row">
-  <div class="col-md-7 col-md-offset-1">
-    
+<h1>検索にヒットした小説</h1>
+
+<% if @novels.any? %>
+  <div class="col-md-10 col-md-offset-1">
+    <h3>小説 (<%= @novels.count %>)</h3>
+    <ul class="novels">
+      <%= render @novels %>
+    </ul>
   </div>
-  <div class="col-md-3">
-    
-  </div>
-</div>
+<% else %>
+  <h3>検索内容は見つかりませんでした。</h3>  
+<% end %>

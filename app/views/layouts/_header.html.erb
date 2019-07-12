@@ -1,15 +1,16 @@
 <header class="nav navbar-fixed-top">
   <div class="container">
-    <%= link_to "小説投稿サイト", root_url %>
+    <%= link_to "ビブリオテック", root_url %>
     <nav class="nav navbar-dark bg-info">
       <ul class="nav navbar-nav">
         <li><%= link_to "小説を探す", search_path %></li>
         <li><%= link_to "初めての方へ", about_path %></li>
-        <li><%= link_to "サポート&ニュース", '#' %></li>
+        <li><%= link_to "サポート&ニュース", help_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <% if logged_in? %>
-        <li><%= link_to "小説管理", "#" %></li>
+        <li><%= link_to "小説管理", colection_user_path(current_user.id) %></li>
+        <li><%= link_to "受信ボックス", box_path %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
            @ <%= current_user.name %><b class="caret"></b>
@@ -17,14 +18,12 @@
           <ul class="dropdown-menu">
             <li><%= link_to "プロフィール", current_user %></li>
             <li class="divider"></li>
-            <li><%= link_to "小説", new_novel_path %></li>
-            <li><%= link_to "近況ノート", new_note_path %></li>
-            <li><%= link_to "おすすめレビュー", "#" %></li>
-            <li><%= link_to "応援コメント", "#" %></li>
+            <li><%= link_to "小説を書く", new_novel_path %></li>
+            <li><%= link_to "近況ノートを書く", new_note_path %></li>
+            <li><%= link_to "おすすめレビュー", comment_user_path(current_user) %></li>
             <li class="divider"></li>
-            <li><%= link_to "フォローしている小説", "#" %></li>
-            <li><%= link_to "フォローしているユーザー", "#" %></li>
-            <li><%= link_to "フォロワー", "#" %></li>
+            <li><%= link_to "本棚", likes_user_path(current_user) %></li>
+            
             <li class="divider"></li>
             <li><%= link_to "アカウント設定", set_path %></li>
             <li><%= link_to "プロフィール設定", edit_user_path(current_user) %></li>
