@@ -1,6 +1,6 @@
 <% provide(:title, "Home") %>
 
-<h1>小説投稿サイト</h1>
+
 
 <div class="row">
   <div class="col-md-8">
@@ -26,15 +26,33 @@
           </ul>
         <% end %>
       </section>
-      <section class="">
-        <h3>急上昇</h3>
-      </section>
     </article>
   </div>
   <div class="col-md-3 col-md-offset-1">
     <aside>
       <section class="novel_ranking">
         <h3>総合ランキング</h3>
+        <% if @ranking.any? %>
+          <% @ranking.each do |novel| %>
+            <ul class="ranking">
+              <li>
+                <span class="novel_title"><%= link_to novel.title, novel %></span>
+                <span class="novel_user">著者名: <%= link_to novel.user.field, novel.user %></span>
+                <section class="novel_information">
+                  <p>ジャンル: <%= novel.genre.name %></p>
+                  <span class="update_date">
+                    <% if novel.stories.any? %>
+                    更新日: <%= novel.stories.last.updated_at.strftime("%Y-%m-%d %H:%M") %>
+                    <% else %>
+                    更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %>
+                    <% end %>
+                  </span>
+                  <span class="glyphicon glyphicon-star" area-hidden="true"></span><%= novel.favorites.count %>
+                </section>
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
       </section>
     </aside>
   </div>

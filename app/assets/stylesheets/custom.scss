@@ -95,7 +95,7 @@ body {
   }
 }
 
-.contents_field {
+#contents_field {
   margin-top: 70px;
   .story_create_time {
     float: right;
@@ -105,7 +105,7 @@ body {
   }
 }
 
-.reviews_field {
+#reviews_field {
   margin-top: 70px;
 }
 
@@ -127,7 +127,7 @@ body {
   }
 }
 
-.infomation_field {
+#infomation_field {
   margin-top: 70px;
   h4 {
     border-top: 1px solid #C0C0C0;
@@ -141,7 +141,7 @@ body {
   }
 }
 
-.author_field {
+#author_field {
   margin-top: 70px;
   .novel_information {
     background-color: #DDFFFF;
@@ -151,7 +151,7 @@ body {
   }
 }
 
-.outline_field {
+#outline_field {
   margin-top: 70px;
   h3 {
     border-bottom: 1px solid #C0C0C0;
@@ -161,6 +161,7 @@ body {
 }
 
 .from_genre {
+  margin-top: 60px;
   ul {
     display: flex;
     li {
@@ -172,6 +173,7 @@ body {
 }
 
 .from_complete_or_incomplete {
+  margin-top: 60px;
   ul {
     display: flex;
     li {
@@ -182,3 +184,144 @@ body {
   }
 }
 
+.ranking {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #C0C0C0;
+  }
+  .novel_user {
+    display: block;
+    color: $gray-light;
+  }
+  .novel_information {
+    background-color: #DDFFFF;
+  .update_date {
+    margin-right: 10px;
+  }
+  }
+}
+
+.from_word {
+  margin-top: 30px;
+  padding: 20px;
+  border: 5px solid #99FFFF;
+}
+
+
+.review_novel {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #C0C0C0;
+  }
+  .review_title_name {
+    font-size: 110%;
+    font-weight: bold;
+  }
+  .review_user {
+    margin-left: 10px;
+  }
+  .review_text_field {
+    display: block;
+    margin-top: 10px;
+  }
+  .edit_delete {
+    float: right;
+  }
+  .novel_user {
+    display: block;
+    color: $gray-light;
+  }
+  .novel_information {
+    background-color: #DDFFFF;
+  .update_date {
+    margin-right: 10px;
+  }
+  }
+}
+
+.author {
+  float: right;
+}
+
+.novel_image {
+  text-align: center;
+}
+
+.discription {
+  margin-top: 30px;
+  padding: 20px;
+  border: 5px solid #99FFFF;
+}
+
+.new_message_box {
+  margin-top: 30px;
+  border-top: 1px solid #C0C0C0;
+}
+
+.new_message_box_list {
+  margin-top: 20px;
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #C0C0C0;
+  }
+  .novel_user {
+    display: block;
+    color: $gray-light;
+  }
+  .novel_outline {
+    display: block;
+  }
+  .novel_information {
+    background-color: #DDFFFF;
+  }
+}
+
+.news {
+  h3 {
+    font-weight: bold;
+  }
+  p {
+    margin-top: 20px;
+    font-size: 120%;
+  }
+}
+
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #DDFFFF;
+  .footer_section {
+    text-align: center;
+  }
+}
+
+.about_read {
+  margin-top: 40px;
+  
+  ul {
+    margin-top: 30px;
+    li {
+      margin-top: 50px;
+    }
+  }
+}
+
+.about_post {
+  p {
+    margin-top: 30px;
+  }
+} 
+
+.about_message {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}

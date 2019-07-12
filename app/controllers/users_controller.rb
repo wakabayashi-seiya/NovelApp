@@ -48,12 +48,17 @@ class UsersController < ApplicationController
   
   def colection
     @user = User.find(params[:id])
-    @novels = @user.novels.paginate(page: params[:page])
+    @novels = @user.novels.reverse_order.paginate(page: params[:page])
   end
   
   def likes
     @user = User.find(params[:id])
-    @favorites = @user.favnovels.paginate(page: params[:page])
+    @favorites = @user.favnovels.reverse_order.paginate(page: params[:page])
+  end
+  
+  def comment
+    @user = User.find(params[:id])
+    @reviews = @user.reviews.paginate(page: params[:page])
   end
   
   def destroy

@@ -1,6 +1,13 @@
 <li>
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-3">
+      <% if novel.image? %>
+        <%= image_tag novel.image.url, size: '150x200' %>
+      <% else %>
+        <%= image_tag("book-icon.png", size: '150x200') %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
       <h3><%= link_to novel.title, novel %></h3>
       <% if current_user == novel.user %>
         <p>        
@@ -9,7 +16,7 @@
         </p>             
       <% end %>
       <span class="novel_user">著者名: <%= link_to novel.user.field, novel.user %></span>
-      <span class="novel_outline">あらすじ: <%= simple_format novel.outline %></span>
+      <span class="novel_outline">あらすじ: <%= simple_format truncate(novel.outline) %></span>
     </div>
     <div class="col-md-5">
       <section class="novel_information">
@@ -27,11 +34,19 @@
           <% elsif novel.keyword_five.nil? %>
             <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %></p>
           <% end %>
-        <span class="update_date">更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
+        <span class="update_date">
+          <% if novel.stories.any? %>
+          更新日: <%= novel.stories.last.updated_at.strftime("%Y-%m-%d %H:%M") %>
+          <% else %>
+          更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %>
+          <% end %>
+        </span>
         <span class="glyphicon glyphicon-star" area-hidden="true"></span><%= novel.favorites.count %>
       </section>
       <section class="new_episode">
-        <%= link_to "エピソードを執筆する", new_novel_story_path(novel.id) %>
+        <% if current_user == novel.user %>
+        　<%= link_to "エピソードを執筆する", new_novel_story_path(novel.id) %>
+        <% end %>
       </section>
     </div>
   </div>

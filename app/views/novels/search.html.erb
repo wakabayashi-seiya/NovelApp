@@ -2,8 +2,15 @@
 
 <div class="row">
   <div class="col-md-7 col-md-offset-1">
+    <section class="from_word">
+      <p>タイトルや関連キーワードを入力して検索できます。</p>
+      <%= form_tag(novels_path, method: :get) do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag "検索" %>
+      <% end %>
+    </section>
     <section class="from_genre">
-      <h3>ジャンルから探す</h3>
+      <h3>ジャンルで検索</h3>
       <ul>
         <li class="genre_sf"><%= link_to "SF", sf_path %></li>
         <li class="genre_df"><%= link_to "異世界ファンタジー", dw_path %></li>
@@ -21,7 +28,7 @@
       </ul>
     </section>
     <section class="from_complete_or_incomplete">
-      <h3>執筆状況から探す</h3>
+      <h3>執筆状況で検索</h3>
       <ul>
         <li><%= link_to "連載中", complete_path %></li>
         <li><%= link_to "完結", incomplete_path %></li>

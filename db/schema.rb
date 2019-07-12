@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190630081011) do
+ActiveRecord::Schema.define(version: 20190708023329) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20190630081011) do
     t.string "keyword_three"
     t.string "keyword_four"
     t.string "keyword_five"
+    t.string "image"
     t.index ["genre_id"], name: "index_novels_on_genre_id"
     t.index ["user_id", "created_at", "genre_id"], name: "index_novels_on_user_id_and_created_at_and_genre_id"
     t.index ["user_id"], name: "index_novels_on_user_id"
@@ -108,6 +109,7 @@ ActiveRecord::Schema.define(version: 20190630081011) do
     t.string "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "lastaccesstime", default: "2019-07-08 02:34:43"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

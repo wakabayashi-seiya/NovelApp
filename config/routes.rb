@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get '/help', to: "static_pages#help"
   get '/about', to: "static_pages#about"
+  get '/box', to: "static_pages#box"
   get '/search', to: "novels#search"
   
   get '/sf', to: "novels#sf"
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   # resources :users
   resources :users do
     member do
-      get :recent, :colection, :likes
+      get :recent, :colection, :likes, :comment
     end
   end
   resources :account_activations, only: [:edit]

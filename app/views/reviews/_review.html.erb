@@ -3,6 +3,7 @@
     <%= review.title %>
   </span>      
   <span class="review_user">  <%= link_to review.user.field, review.user %></span>
+  <p>更新日: <%= review.updated_at.strftime("%Y-%m-%d %H:%M") %> </p>
   <span class="review_text_field">
     <%= simple_format review.text %>
   </span>

@@ -1,0 +1,55 @@
+<% provide(:title, "受信ボックス") %>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <section class="discription">
+      <h4>
+        ここでは、本棚に入れた小説のエピソード更新情報を確認することができます。
+      </h4>
+      <ul>
+      　<li>更新エピソードがある場合は、新着情報欄に表示されます。</li>
+        <li>新着情報欄に何も表示されない場合、更新エピソードはありません。</li>
+        <li>再び受信ボックスに訪れると、前の新着メッセージはもう表示されなくなります。</li>
+      </ul>
+    </section>
+    <section class="new_message_box">
+      <% if @favorites.any? %>
+        <h3>新着情報</h3>
+        <span>(更新エピソードがある場合、以下に表示します)</span>
+          <% @favorites.each do |favorite| %>
+            <% if favorite.novel.stories.any? %>
+              <% (favorite.novel.stories).each do |story| %>
+                <% if story.created_at > current_user.lastaccesstime %>
+                  <ul class="new_message_box_list">
+                    <li>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <% if story.novel.image? %>
+                            <%= image_tag story.novel.image.url, size: '150x200' %>
+                          <% else %>
+                            <%= image_tag("book-icon.png", size: '150x200') %>
+                          <% end %>
+                        </div>
+                        <div class="col-md-4">
+                          <h3><%= link_to story.novel.title, story.novel %></h3>
+                          <span class="novel_user">著者名: <%= link_to story.novel.user.field, story.novel.user %></span>
+                          <span class="novel_outline">あらすじ: <%= simple_format truncate(story.novel.outline) %></span>
+                        </div>
+                        <div class="col-md-5">
+                          <section class="novel_information">
+                            <%= link_to "更新エピソードを見に行く！", story.novel %>       
+                          </section>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>本棚機能を活用してみよう！</p>
+      <% end %>
+    </section>
+  </div>
+</div>
