@@ -8,7 +8,6 @@ class Novel < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   mount_uploader :image, ImageUploader
-  # default_scope -> { order(created_at: :desc) }
   validates :title, presence: true
   validates :outline, presence: true
   validates :catchphrase, presence: true
