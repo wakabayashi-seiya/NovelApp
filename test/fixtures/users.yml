@@ -1,29 +1,27 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  email: MyString
-  password_digest: MyString
-  remember_digest: MyString
-  admin: false
-  avtivation_digest: MyString
-  activated: false
-  activated_at: 2019-06-21 03:50:48
-  reset_digest: MyString
-  reset_sent_at: 2019-06-21 03:50:48
-  field: MyString
-  introduction: 
-
+  name: tanaka_waka
+  email: example@gmail.com 
+  password_digest: <%= User.digest('password') %>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  field: head
+  
 two:
-  name: MyString
-  email: MyString
-  password_digest: MyString
-  remember_digest: MyString
-  admin: false
-  avtivation_digest: MyString
-  activated: false
-  activated_at: 2019-06-21 03:50:48
-  reset_digest: MyString
-  reset_sent_at: 2019-06-21 03:50:48
-  field: MyString
-  introduction: 
+  name: sasaki_taka
+  email: example@docomo.ne.jp
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  field: body
+  
+
+three:
+  name: sekiya_naka
+  email: sekiya@example.com
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  field: foot
