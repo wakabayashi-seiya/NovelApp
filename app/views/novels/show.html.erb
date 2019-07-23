@@ -22,23 +22,25 @@
 
 <span class="favorite">
   <% if !current_user.nil? %>
-    <% if current_user.favnovel?(@novel) %>
-      <%= form_for(current_user.favorites.find_by(novel_id: @novel.id), html: { method: :delete }, remote: true) do |f| %>
-        <%= hidden_field_tag :novel_id, @novel.id %>
-        <%= button_tag( class: 'btn btn-dark') do %>
-          <%= content_tag :p, "", class: 'glyphicon glyphicon-star' %>
-          <p>本棚から外す</p>
+    <% if !(current_user == @novel.user) %>
+      <% if current_user.favnovel?(@novel) %>
+        <%= form_for(current_user.favorites.find_by(novel_id: @novel.id), html: { method: :delete }, remote: true) do |f| %>
+          <%= hidden_field_tag :novel_id, @novel.id %>
+          <%= button_tag( class: 'btn btn-dark') do %>
+            <%= content_tag :p, "", class: 'glyphicon glyphicon-star' %>
+            <p>本棚から外す</p>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= form_for(current_user.favorites.build, url: favorites_path, remote: true) do |f| %>
+          <%= hidden_field_tag :novel_id, @novel.id %>
+          <%= button_tag( class: 'btn btn-info') do %>
+            <%= content_tag :p, "", class: 'glyphicon glyphicon-star' %>
+            <p>本棚に追加</p>
+    　     <% end %>
         <% end %>
       <% end %>
-    <% else %>
-      <%= form_for(current_user.favorites.build, url: favorites_path, remote: true) do |f| %>
-        <%= hidden_field_tag :novel_id, @novel.id %>
-        <%= button_tag( class: 'btn btn-info') do %>
-          <%= content_tag :p, "", class: 'glyphicon glyphicon-star' %>
-          <p>本棚に追加</p>
-    　   <% end %>
-      <% end %>
-    <% end %>
+    <% end  %> 
   <% end %>
 </span>
 
