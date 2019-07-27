@@ -2,13 +2,15 @@
 
 <h1>ミステリーの小説</h1>
 
-<% if @novels.any? %>
-  <div class="col-md-10 col-md-offset-1">
-    <h3>小説 (<%= @novels.count %>)</h3>
-    <ul class="novels">
-      <%= render @novels %>
-    </ul>
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <% if @novels.any? %>
+      <h3>小説 (<%= @novels.count %>)</h3>
+      <ul class="novels">
+        <%= render @novels %>
+      </ul>
+    <% else %>
+      <h3>まだこのジャンルの小説は投稿されていません。</h3>  
+    <% end %>
   </div>
-<% else %>
-  <h3>まだこのジャンルの小説は投稿されていません。</h3>  
-<% end %>
+</div>

@@ -2,25 +2,20 @@
 
 <h1>Acadelia サインイン</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= simple_form_for(@user) do |f| %>
       <%= render 'shared/error_explanation', model: f.object %>
     
-      <%= f.label :name, "ユーザーID" %>
-      <%= f.text_field :name, class: 'form-control', :placeholder => "ユーザーID(英数字6文字以上)" %>
+      <%= f.input :name, label: "ユーザーID", placeholder: "ユーザーID(英数字6文字以上)" %>
       
-      <<%= f.label :field, "ペンネーム" %>
-      <%= f.text_field :field, class: 'form-control', :placeholder => "好きなペンネームを入力" %>
+      <%= f.input :field,  label: "ペンネーム", placeholder: "好きなペンネームを入力" %>
   
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control', :placeholder => "メールアドレス" %>
+      <%= f.input :email, label: "メールアドレス", placeholder: "メールアドレス" %>
   
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control', :placeholder => "パスワード(英数字6文字以上)" %>
+      <%= f.input :password, label: "パスワード", placeholder: "パスワード(英数字6文字以上)" %>
   
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => "確認用" %>
+      <%= f.input :password_confirmation, label: "パスワード確認", placeholder: "確認用" %>
       
       <%= f.submit "サインイン", class: 'btn btn-info' %>
     <% end %>

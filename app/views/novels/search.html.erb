@@ -1,7 +1,7 @@
 <% provide(:title, "小説を探す") %>
 
 <div class="row">
-  <div class="col-md-7 col-md-offset-1">
+  <div class="col-md-7 offset-md-1">
     <section class="from_word">
       <p>タイトルや関連キーワードを入力して検索できます。</p>
       <%= form_tag(novels_path, method: :get) do %>
@@ -35,7 +35,7 @@
       </ul>
     </section>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 offset-md-1">
     <section>
       <h3>小説を探すについて</h3>
       <p>ここでは、様々な検索機能を用いて、小説を探すことができます。</p>

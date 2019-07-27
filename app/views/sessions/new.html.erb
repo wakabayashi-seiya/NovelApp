@@ -2,27 +2,24 @@
 
 <h1>ログイン</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= simple_form_for(:session, url: login_path) do |f| %>
       
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.input :email, label: "メールアドレス" %>
       
-      <%= f.label :password %>
       <%= link_to "(パスワードをお忘れですか？)", new_password_reset_path %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.input :password, label: "パスワード" %>
       
-      <%= f.label :remember_me, class: 'checkbox inline' do %>
-        <%= f.check_box :remember_me %>
-        <span>入力した情報の保存</span>
-      <% end %>
+      <%= f.input :remember_me, as: :boolean, inline_label: "入力した情報の保存", class: "checkbox inline" %>
       
       <%= f.submit "ログイン", class: 'btn btn-primary' %>
     <% end %>
   </div>
-  <div class="membership col-md-6 col-md-offset-3">
-    <p>まだ会員になっていない方</p>
+</div>
+<div class="row justify-content-center">
+  <div class="col-md-6 membership">
+    <p>まだ会員になっていない方は……</p>
   　<p><%= link_to "登録", new_user_path %></p>
   　<p class="txt-note">※登録は無料です。是非、登録して便利な機能を楽しんでください！</p>
   </div>

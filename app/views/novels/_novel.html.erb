@@ -41,7 +41,7 @@
           更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %>
           <% end %>
         </span>
-        <span class="glyphicon glyphicon-star" area-hidden="true"></span><%= novel.favorites.count %>
+        <span class="fas fa-book" area-hidden="true"></span><%= novel.favorites.count %>
       </section>
       <section class="new_episode">
         <% if current_user == novel.user %>

@@ -3,12 +3,12 @@
 <h1><%= @novel.title %></h1>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 offset-md-2">
     <div class="story_contents">
       <h3><%= @story.title %></h3>
-      <span>
+      <p class="story_text">
         <%= simple_format @story.text %>
-      </span>
+      </p>
     </div>
   </div>
 </div>

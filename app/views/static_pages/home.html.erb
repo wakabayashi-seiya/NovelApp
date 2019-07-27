@@ -1,20 +1,19 @@
 <% provide(:title, "Home") %>
 
 
-
 <div class="row">
   <div class="col-md-8">
-    <nav class="nav navbar-light bg-light">
+    <nav class="nav navbar-expand-md navbar-light bg-light">
       <ul class="nav navbar-nav">
-        <li class="genre_sf"><%= link_to "SF", sf_path %></li>
-        <li class="genre_df"><%= link_to "異世界ファンタジー", dw_path %></li>
-        <li class="genre_cf"><%= link_to "現代ファンタジー", cw_path %></li>
-        <li class="genre_love"><%= link_to "恋愛", love_path %></li>
-        <li class="genre_horror"><%= link_to "ホラー", horror_path %></li>
-        <li class="genre_mystery"><%= link_to "ミステリー", mystery_path %></li>
-        <li class="genre_suspense"><%= link_to "サスペンス", suspense_path %></li>
-        <li class="genre_essay"><%= link_to "エッセイ", essay_path %></li>
-        <li class="genre_history"><%= link_to "歴史・伝奇", history_path %></li>
+        <li class="nav-item"><%= link_to "SF", sf_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "異世界ファンタジー", dw_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "現代ファンタジー", cw_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "恋愛", love_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "ホラー", horror_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "ミステリー", mystery_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "サスペンス", suspense_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "エッセイ", essay_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "歴史・伝奇", history_path, class: "nav-link" %></li>
       </ul>
     </nav>
     <article>
@@ -28,7 +27,7 @@
       </section>
     </article>
   </div>
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-3 offset-md-1">
     <aside>
       <section class="novel_ranking">
         <h3>総合ランキング</h3>
@@ -47,7 +46,7 @@
                     更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %>
                     <% end %>
                   </span>
-                  <span class="glyphicon glyphicon-star" area-hidden="true"></span><%= novel.favorites.count %>
+                  <span class="fas fa-book" area-hidden="true"></span><%= novel.favorites.count %>
                 </section>
               </li>
             </ul>
