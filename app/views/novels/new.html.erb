@@ -2,9 +2,9 @@
 
 <h1>新しい小説を作成する</h1>
 
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <%= form_for(@novel, url: novels_path) do |f| %>
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <%= simple_form_for(@novel, url: novels_path) do |f| %>
     <%= render 'shared/error_explanation', model: f.object %>
       <section class="novel_image">
         <% if @novel.image? %>
@@ -12,37 +12,37 @@
         <% else %>
           <%= image_tag("book-icon.png", size: '150x200') %>
         <% end %>
-        <%= f.file_field :image %>
+        <%= f.input :image, as: :file, label: false %>
       </section> 
       <section class="novel_title">
         <h3>作品タイトル</h3>
-        <%= f.text_field :title, class: 'form-control' %>
+        <%= f.input :title, label: false %>
       </section>
       <section class="novel_catchphrase">
         <h3>キャッチコピー</h3>
         <p>作品に相応しいキャッチコピーをつけることができます。</p>
-        <%= f.text_field :catchphrase, class: 'form-control' %>
+        <%= f.input :catchphrase, label: false %>
       </section>
       <section class="novel_outline">
         <h3>概要</h3>
         <p>あらすじや登場人物など、小説の情報を記入できます。</p>
-        <%= f.text_area :outline, class: 'form-control' %>
+        <%= f.input :outline, as: :text, label: false %>
       </section>
       <section class="novel_genre">
         <h3>種類/ジャンル</h3>
         <p>当てはまるジャンルを1つ選んでください。</p>
-        <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+        <%= f.input :genre_id, collection: Genre.all, label_method: :name, value_method: :id, include_blank: false, label: false %>
       </section>
       <section class="novel_keyword">
         <h3>関連キーワード</h3>
         <p>小説のテーマや特徴に関連したキーワードを最大5つまで設定できます。</p>
           <div class="control-group">
-            <div class="controls">
-              <%= f.text_field :keyword_one, class: 'input-small' %>
-              <%= f.text_field :keyword_two, class: 'input-small' %>
-              <%= f.text_field :keyword_three, class: 'input-small' %>
-              <%= f.text_field :keyword_four, class: 'input-small' %>
-              <%= f.text_field :keyword_five, class: 'input-small' %>
+            <div class="controls form-inline">
+              <%= f.input :keyword_one, label: false, :input_html => {:style => 'width: 150px'} %>
+              <%= f.input :keyword_two, label: false, :input_html => {:style => 'width: 150px'} %>
+              <%= f.input :keyword_three, label: false, :input_html => {:style => 'width: 150px'} %>
+              <%= f.input :keyword_four, label: false, :input_html => {:style => 'width: 150px'} %>
+              <%= f.input :keyword_five, label: false, :input_html => {:style => 'width: 150px'} %>
             </div>
           </div>
         <p>(キーワード例): 探偵、ライトノベル、純文学、グルメ、異世界転生、スペースオペラ、短編

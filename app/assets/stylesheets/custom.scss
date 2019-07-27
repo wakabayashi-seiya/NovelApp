@@ -1,18 +1,16 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "summernote-bs4";
 
 
 h1 {
   text-align: center;
 }
 
-body {
-  padding-top: 70px;
-}
 
 
 .membership {
   border-top: medium solid #0000ff;
+  margin-top: 40px;
 }
 
 .notes {
@@ -22,7 +20,7 @@ body {
     border-top: 1px solid #C0C0C0;
   }
   .timestamp {
-    color: $gray-light;
+    color: #6c757d;
   }
   .notetitle {
     margin-left: 50px;
@@ -30,6 +28,10 @@ body {
   .edit_delete {
     float: right;
   }
+}
+
+.note_timestamp {
+  float: right;
 }
 
 .back {
@@ -45,7 +47,7 @@ body {
   }
   .novel_user {
     display: block;
-    color: $gray-light;
+    color: #6c757d;
   }
   .novel_outline {
     display: block;
@@ -117,7 +119,7 @@ body {
   }
   .novel_user {
     display: block;
-    color: $gray-light;
+    color: #6c757d;
   }
   .novel_outline {
     display: block;
@@ -192,7 +194,7 @@ body {
   }
   .novel_user {
     display: block;
-    color: $gray-light;
+    color: #6c757d;
   }
   .novel_information {
     background-color: #DDFFFF;
@@ -231,7 +233,7 @@ body {
   }
   .novel_user {
     display: block;
-    color: $gray-light;
+    color: #6c757d;
   }
   .novel_information {
     background-color: #DDFFFF;
@@ -269,7 +271,7 @@ body {
   }
   .novel_user {
     display: block;
-    color: $gray-light;
+    color: #6c757d;
   }
   .novel_outline {
     display: block;
@@ -299,10 +301,11 @@ body,
 footer {
   margin-top: auto;
   background-color: #DDFFFF;
-  .footer_section {
-    text-align: center;
+  .navbar {
+    margin-bottom: 0px;
   }
 }
+
 
 .about_read {
   margin-top: 40px;
@@ -325,3 +328,22 @@ footer {
   margin-top: 80px;
   margin-bottom: 40px;
 }
+
+.story_contents {
+  .story_text {
+    margin-top: 40px;
+  }
+}
+
+.main {
+  margin-top: 140px;
+}
+
+.review_title {
+  margin-top: 30px;
+}
+
+.review_text {
+  margin-top: 30px;
+}
+

@@ -3,25 +3,25 @@
 <h1>レビューを投稿する</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-1">
-    <%= form_for(@review, url: novel_reviews_path) do |f| %>
+  <div class="col-md-6 offset-md-1">
+    <%= simple_form_for(@review, url: novel_reviews_path) do |f| %>
       <%= render 'shared/error_explanation', model: f.object %>
       <%= f.hidden_field :user_id, value: current_user.id %>
        
       <section class="review_title">
         <h3>ひとこと紹介</h3>
         <p>この小説の魅力をひとことでご記入ください</p>
-        <%= f.text_field :title, class: 'form-control' %>
+        <%= f.input :title, label: false %>
       </section>
       <section class="review_text">
         <h3>レビュー本文</h3>
         <p>小説を読んで面白かった点や感動した点などをご記入ください</p>
-        <%= f.text_area :text, class: 'form-control' %>
+        <%= f.input :text, label: false %>
       </section>
       <%= f.submit "投稿", class: 'btn btn-primary' %>
     <% end %>
   </div>
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-3 offset-md-1">
     <section>
       <h3>おすすめレビューについて</h3>
       <p>おすすめレビューは、あなたが感じたこの小説の魅力を伝えられる場所です。</p>
