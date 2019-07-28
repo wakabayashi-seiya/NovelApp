@@ -1,8 +1,8 @@
 <% provide(:title, "Home") %>
 
 
-<div class="row">
-  <div class="col-md-8">
+<div class="row justify-content-center">
+  <div class="col-md-10">
     <nav class="nav navbar-expand-md navbar-light bg-light">
       <ul class="nav navbar-nav">
         <li class="nav-item"><%= link_to "SF", sf_path, class: "nav-link" %></li>
@@ -27,32 +27,68 @@
       </section>
     </article>
   </div>
-  <div class="col-md-3 offset-md-1">
-    <aside>
+  <div class="col-md-10">
       <section class="novel_ranking">
-        <h3>総合ランキング</h3>
+        <h3>総合ランキング(上位5つ)</h3>
         <% if @ranking.any? %>
           <% @ranking.each do |novel| %>
             <ul class="ranking">
               <li>
-                <span class="novel_title"><%= link_to novel.title, novel %></span>
-                <span class="novel_user">著者名: <%= link_to novel.user.field, novel.user %></span>
-                <section class="novel_information">
-                  <p>ジャンル: <%= novel.genre.name %></p>
-                  <span class="update_date">
-                    <% if novel.stories.any? %>
-                    更新日: <%= novel.stories.last.updated_at.strftime("%Y-%m-%d %H:%M") %>
+                <div class="row">
+                  <div class="col-md-3">
+                    <% if novel.image? %>
+                      <%= image_tag novel.image.url, size: '120x180' %>
                     <% else %>
-                    更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %>
+                      <%= image_tag("book-icon.png", size: '120x180') %>
                     <% end %>
-                  </span>
-                  <span class="fas fa-book" area-hidden="true"></span><%= novel.favorites.count %>
-                </section>
+                  </div>
+                  <div class="col-md-4">
+                    <h3><%= link_to novel.title, novel %></h3>
+                      <% if current_user == novel.user %>
+                        <p>        
+                          <%= link_to "(編集)", edit_novel_path(novel) %> | <%= link_to "(作品を削除する)", novel, method: :delete, 
+                                                                             data: { confirm: "作品を削除します。本当によろしいですか？"}  %>          
+                        </p>             
+                      <% end %>
+                    <span class="novel_user">著者名: <%= link_to novel.user.field, novel.user %></span>
+                    <span class="novel_outline">あらすじ: <%= simple_format truncate(novel.outline, length: 12) %></span>
+                  </div>
+                  <div class="col-md-5">
+                    <section class="novel_information">
+                      <p>ジャンル: <%= novel.genre.name %></p>
+                        <% if !novel.keyword_five.nil? %>
+                          <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %> <%= novel.keyword_five %></p>
+                        <% elsif novel.keyword_one.nil? %>
+                          <p>関連キーワード: 未設定</p>
+                        <% elsif novel.keyword_two.nil? %>
+                          <p>関連キーワード: <%= novel.keyword_one %></p>
+                        <% elsif novel.keyword_three.nil? %>
+                          <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %></p>
+                        <% elsif novel.keyword_four.nil? %>
+                          <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %></p>
+                        <% elsif novel.keyword_five.nil? %>
+                          <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %></p>
+                        <% end %>
+                      <span class="update_date">
+                        <% if novel.stories.any? %>
+                          更新日: <%= novel.stories.last.updated_at.strftime("%Y-%m-%d %H:%M") %>
+                        <% else %>
+                          更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %>
+                        <% end %>
+                      </span>
+                      <span class="fas fa-book" area-hidden="true"></span><%= novel.favorites.count %>
+                    </section>
+                    <section class="new_episode">
+                      <% if current_user == novel.user %>
+        　               <%= link_to "エピソードを執筆する", new_novel_story_path(novel.id) %>
+                      <% end %>
+                    </section>
+                  </div>
+                </div>
               </li>
             </ul>
           <% end %>
         <% end %>
       </section>
-    </aside>
   </div>
 </div>
