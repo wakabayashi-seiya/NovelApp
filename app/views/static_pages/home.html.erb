@@ -29,8 +29,8 @@
   </div>
   <div class="col-md-10">
       <section class="novel_ranking">
-        <h3>総合ランキング(上位5つ)</h3>
         <% if @ranking.any? %>
+        <h3>総合ランキング(上位5つ)</h3>
           <% @ranking.each do |novel| %>
             <ul class="ranking">
               <li>
