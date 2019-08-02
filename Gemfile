@@ -7,7 +7,6 @@ gem 'carrierwave',   '1.2.2'
 gem 'mini_magick',   '4.7.0'
 gem 'will_paginate', '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
-# gem 'bootstrap-sass', '3.3.7'
 gem 'bootstrap', '~> 4.1.1'
 gem 'puma',         '3.9.1'
 gem 'sass-rails',   '5.0.6'
@@ -20,10 +19,11 @@ gem 'summernote-rails'
 gem 'simple_form'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
+  # gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
   gem 'rspec-rails' 
   gem 'factory_girl_rails'
+  gem 'pg', '0.20.0'
 end
 
 group :development do
