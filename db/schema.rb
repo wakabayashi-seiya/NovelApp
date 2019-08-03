@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 20190708023329) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "novel_id"
+    t.bigint "user_id"
+    t.bigint "novel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["novel_id", "user_id"], name: "index_favorites_on_novel_id_and_user_id", unique: true
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 20190708023329) do
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "text"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_notes_on_user_id_and_created_at"
@@ -39,8 +42,8 @@ ActiveRecord::Schema.define(version: 20190708023329) do
   end
 
   create_table "novel_tag_relations", force: :cascade do |t|
-    t.integer "novel_id"
-    t.integer "tag_id"
+    t.bigint "novel_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["novel_id"], name: "index_novel_tag_relations_on_novel_id"
@@ -51,8 +54,8 @@ ActiveRecord::Schema.define(version: 20190708023329) do
     t.string "title"
     t.string "catchphrase"
     t.text "outline"
-    t.integer "user_id"
-    t.integer "genre_id"
+    t.bigint "user_id"
+    t.bigint "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "keyword_one"
@@ -69,8 +72,8 @@ ActiveRecord::Schema.define(version: 20190708023329) do
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.text "text"
-    t.integer "novel_id"
-    t.integer "user_id"
+    t.bigint "novel_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["novel_id", "created_at", "user_id"], name: "index_reviews_on_novel_id_and_created_at_and_user_id"
@@ -81,7 +84,7 @@ ActiveRecord::Schema.define(version: 20190708023329) do
   create_table "stories", force: :cascade do |t|
     t.string "title"
     t.text "text"
-    t.integer "novel_id"
+    t.bigint "novel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["novel_id", "created_at"], name: "index_stories_on_novel_id_and_created_at"
@@ -109,8 +112,18 @@ ActiveRecord::Schema.define(version: 20190708023329) do
     t.string "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "lastaccesstime", default: "2019-07-08 02:34:43"
+    t.datetime "lastaccesstime", default: "2019-08-03 02:47:52"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "favorites", "novels"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "notes", "users"
+  add_foreign_key "novel_tag_relations", "novels"
+  add_foreign_key "novel_tag_relations", "tags"
+  add_foreign_key "novels", "genres"
+  add_foreign_key "novels", "users"
+  add_foreign_key "reviews", "novels"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "stories", "novels"
 end
