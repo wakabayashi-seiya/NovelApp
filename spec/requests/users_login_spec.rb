@@ -6,21 +6,22 @@ RSpec.describe "Users login", type: :request do
   end
   
   example "invalid login information" do
-    get login_path
-    expect(response).to render_template("sessions/new")
-    post login_path, params: { session: { email: "", password: "" } }
-    expect(flash[:danger]).not_to be_empty
-    expect(response).to render_template("sessions/new")
+    get new_user_session_path
+    expect(response).to render_template(:new)
+    post user_session_path, params: { user: { email: "", password: "" } }
+    expect(user_signed_in?).to be_falsey
+    expect(response).to render_template(:new)
   end
   
   example "valid login information" do
-    get login_path
-    expect(response).to render_template("sessions/new")
-    post login_path, params: { session: { email: "example@gmail.com", password: "reaction" } }
-    expect(is_logged_in?).to be_truthy
+    get new_user_session_path
+    expect(response).to render_template(:new)
+    post user_session_path, params: { user: { email: "example@gmail.com", password: "reaction" } }
+    expect(user_signed_in?).to be_truthy
+    expect(controller.current_user).to eq(@user)
     expect(response).to redirect_to root_url
-    delete logout_path
-    expect(is_logged_in?).to be_falsey
+    delete destroy_user_session_path
+    expect(user_signed_in?).to be_falsey
     expect(response).to redirect_to root_url
   end
   

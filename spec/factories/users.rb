@@ -5,10 +5,8 @@ FactoryGirl.define do
     email "example@gmail.com" 
     password "reaction"
     password_confirmation "reaction"  
-    admin true
-    activated true
-    activated_at  Time.zone.now 
     field "head"
+    confirmed_at { Date.today }
   end
   
   factory :other_user, class: User do
@@ -17,10 +15,8 @@ FactoryGirl.define do
     email "count@example.ne.jp" 
     password "reaction"
     password_confirmation "reaction"  
-    admin true
-    activated true
-    activated_at  Time.zone.now 
     field "body"
+    confirmed_at { Date.today }
   end
   
    factory :invalid_user, class: User do
@@ -29,10 +25,8 @@ FactoryGirl.define do
     email "reaction@example.com" 
     password "reaction"
     password_confirmation "reaction"  
-    admin true
-    activated true
-    activated_at  Time.zone.now 
     field "foot"
+    confirmed_at { Date.today }
   end
   
   factory :ooo_user, class: User do

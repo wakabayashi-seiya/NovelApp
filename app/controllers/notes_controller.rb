@@ -3,7 +3,7 @@ class NotesController < ApplicationController
   before_action :correct_user_note, only: [:edit, :update, :destroy]
   
   def new
-    @note = current_user.notes.build if logged_in?
+    @note = current_user.notes.build if user_signed_in?
   end
   
   def create

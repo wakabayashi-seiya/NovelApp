@@ -12,9 +12,7 @@ RSpec.describe StoriesController, type: :controller do
     
     context "when the requested novel is current_user's novel" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@user)
+        login_user @user
         get :new, params: { novel_id: @novel.id }
       end
       it "assgins the requested story to @story" do
@@ -28,9 +26,7 @@ RSpec.describe StoriesController, type: :controller do
     
     context "when the requested novel is not current_user's novel" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@other_user)
+        login_user @other_user
         get :new, params: { novel_id: @novel.id }
       end
       it "redirects to root_url" do
@@ -52,9 +48,7 @@ RSpec.describe StoriesController, type: :controller do
     
     context "when the requested novel is current_user's novel" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@user)
+        login_user @user
       end
       context "when the requested params is valid" do
         it "saves the new novel in the database" do
@@ -79,9 +73,7 @@ RSpec.describe StoriesController, type: :controller do
     
     context "when the requested novel is not current_user's novel" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@other_user)
+        login_user @other_user
       end
       
       it "redirects to root_url" do
@@ -103,9 +95,7 @@ RSpec.describe StoriesController, type: :controller do
     
     context "when the requested novel is current_user's novel" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@user)
+        login_user @user
       end
       context "when the requested story is the requested novel's story" do
         before do
@@ -132,9 +122,10 @@ RSpec.describe StoriesController, type: :controller do
     
     context "when the requested novel is not current_user's novel" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@other_user)
+        # allow(controller)
+        # .to receive(:current_user)
+        # .and_return(@other_user)
+        login_user @other_user
         get :edit, params: { novel_id: @novel.id, id: @story.id }
       end
       it "redirects to root_url" do
@@ -154,9 +145,7 @@ RSpec.describe StoriesController, type: :controller do
     
     context "when the requested params is valid" do
       before do
-        allow(controller)
-       .to receive(:current_user)
-       .and_return(@user)
+        login_user @user
         patch :update, params: { novel_id: @novel.id, id: @story.id, story: attributes_for(:story, title: "update_title") }
       end
       
@@ -168,9 +157,7 @@ RSpec.describe StoriesController, type: :controller do
     
     context "when the requested params is invalid" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@user)
+        login_user @user
         patch :update, params: { novel_id: @novel.id, id: @story.id, story: attributes_for(:story, title: " ") }
       end
       
@@ -191,9 +178,7 @@ RSpec.describe StoriesController, type: :controller do
       @genre = create(:genre)
       @novel = create(:novel, user_id: @user.id, genre_id: @genre.id)
       @story = create(:story, novel_id: @novel.id)
-      allow(controller)
-      .to receive(:current_user)
-      .and_return(@user)
+      login_user @user
     end
     it "destroy the novel in the database" do
       expect {

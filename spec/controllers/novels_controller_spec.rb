@@ -11,9 +11,7 @@ RSpec.describe NovelsController, type: :controller do
     
     context "when logged in user" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@user)
+        login_user @user
         get :new
       end
       it "assgins the requested novel to @novel" do
@@ -46,9 +44,7 @@ RSpec.describe NovelsController, type: :controller do
     
     context "when logged in user" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@user)
+        login_user @user
       end
       context "when the requested params is valid" do
         it "saves the new novel in the database" do
@@ -90,9 +86,7 @@ RSpec.describe NovelsController, type: :controller do
     
     context "when logged in user" do
       before do
-         allow(controller)
-        .to receive(:current_user)
-        .and_return(@user)
+        login_user @user
       end
       context "when the requested novel is current_user's novel" do
         before do
@@ -139,9 +133,7 @@ RSpec.describe NovelsController, type: :controller do
     
     context "when the requested novel is current_user's novel" do
       before do
-        allow(controller)
-      .to receive(:current_user)
-      .and_return(@user)
+       login_user @user
       end
       
       context "when the requested params is valid" do
@@ -172,9 +164,7 @@ RSpec.describe NovelsController, type: :controller do
 
     context "when the requested novel is not current_user's novel" do
       before do
-        allow(controller)
-        .to receive(:current_user)
-        .and_return(@other_user)
+         login_user @other_user
          patch :update, params: { id: @novel.id, novel: attributes_for(:novel, title: "update_title") }
       end
       it "redirects to root_url" do
@@ -195,9 +185,7 @@ RSpec.describe NovelsController, type: :controller do
     
     context "when the requested novel is current_user's novel" do
       before do
-        allow(controller)
-      .to receive(:current_user)
-      .and_return(@user)
+        login_user @user
       end
       
       it "destroy the novel in the database" do
@@ -214,9 +202,7 @@ RSpec.describe NovelsController, type: :controller do
     
     context "when the requested novel is not current_user's novel" do
       before do
-        allow(controller)
-      .to receive(:current_user)
-      .and_return(@other_user)
+        login_user @other_user
       end
       
       it "does not destroy the novel in the database" do
