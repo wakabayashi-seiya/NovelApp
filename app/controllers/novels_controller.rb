@@ -3,7 +3,7 @@ class NovelsController < ApplicationController
   before_action :correct_user_novel, only: [:edit, :update, :destroy]
   
   def new
-    @novel = current_user.novels.build if logged_in?
+    @novel = current_user.novels.build if user_signed_in?
   end
   
   def create

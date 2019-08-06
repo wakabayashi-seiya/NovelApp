@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :correct_user_review, only: [:edit, :update, :destroy]
   
   def new
-    @review = @novel.reviews.build if logged_in?
+    @review = @novel.reviews.build if user_signed_in?
   end
   
   def create

@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
   private
     
     def read
-      if logged_in?
+      if user_signed_in?
         @user = current_user
         @user.lastaccesstime = DateTime.now
         @user.save!

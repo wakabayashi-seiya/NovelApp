@@ -4,7 +4,4 @@
 
 
 
-<p>
-  <%= link_to "アカウントを消去", @user, method: :delete,
-                                   data: { confirm: "本当にいいですか？" } %>
-</p>
+<p><%= link_to "アカウントを削除する", @user, data: { confirm: "本当によろしいですか？" }, method: :delete %></p>

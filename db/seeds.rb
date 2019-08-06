@@ -1,28 +1,27 @@
-User.create!(name: "Seiya_waka",
-             field: "せいや",
-             email: "e1517234@soka-u.jp",
-             password: "foobar",
-             password_confirmation: "foobar",
-             admin: true,
-             activated: true,
-             activated_at: Time.zone.now)
+user_1 = User.new(name: "Seiya_waka",
+                      field: "せいや",
+                      email: "e1517234@soka-u.jp",
+                      password: "foobar",
+                      password_confirmation: "foobar",
+                      admin: true)
+user_1.skip_confirmation!
+user_1.save!
              
-User.create!(name: "Yoto_waka",
-             field: "ゆうと",
-             email: "wakabadmt@soka-u.jp",
-             password: "foobaz",
-             password_confirmation: "foobaz",
-             activated: true,
-             activated_at: Time.zone.now)
+user_2 = User.new(name: "Yoto_waka",
+                  field: "ゆうと",
+                  email: "wakabadmt@soka-u.jp",
+                  password: "foobaz",
+                  password_confirmation: "foobaz")
+user_2.skip_confirmation!
+user_2.save!
              
-User.create!(name: "Yuta_waka",
-             field: "ゆうた",
-             email: "wakaba@soka-u.jp",
-             password: "reaction",
-             password_confirmation: "reaction",
-             activated: true,
-             activated_at: Time.zone.now)
-             
+user_3 = User.new(name: "Yuta_waka",
+                  field: "ゆうた",
+                  email: "wakaba@soka-u.jp",
+                  password: "reaction",
+                  password_confirmation: "reaction")
+user_3.skip_confirmation!
+user_3.save!
              
 Genre.create([
           { name: "SF"},

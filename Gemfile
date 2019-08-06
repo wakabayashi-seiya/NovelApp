@@ -17,6 +17,7 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 gem 'summernote-rails'
 gem 'simple_form'
+gem 'devise'
 
 group :development, :test do
   # gem 'sqlite3', '1.3.13'
@@ -39,6 +40,7 @@ group :test do
   gem 'minitest-reporters',       '1.1.14'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
+  gem 'database_rewinder'
 end
 
 group :production do

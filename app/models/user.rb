@@ -1,25 +1,30 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-  #       :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :confirmable, :lockable, :timeoutable, :trackable
+  
   has_many :notes
   has_many :novels
   has_many :reviews
   has_many :favorites, dependent: :destroy
   has_many :favnovels, through: :favorites, source: :novel
-  before_save :downcase_email
-  before_create :create_activation_digest
-  attr_accessor :remember_token, :activation_token, :reset_token
+  
+  # before_save :downcase_email
+  # before_create :create_activation_digest
+  
+  # attr_accessor :remember_token, :activation_token, :reset_token
+  
   VALID_NAME_REGEX = /\A[a-zA-Z0-9\-_]+\z/
   validates :name, presence: true, format: { with: VALID_NAME_REGEX }, 
                    length: { maximum: 50 }, uniqueness: true
   validates :field, presence: true
+  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-                    length: { maximum: 255}, uniqueness: { case_sensitive: false }
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :email, format: { with: VALID_EMAIL_REGEX }
+  #                   length: { maximum: 255}, uniqueness: { case_sensitive: false }
+  # validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   
 

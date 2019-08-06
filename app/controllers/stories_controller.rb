@@ -3,7 +3,7 @@ class StoriesController < ApplicationController
   before_action :current_novel_story, only: [:edit, :update, :destroy]
   
   def new
-    @story = @novel.stories.build if logged_in?
+    @story = @novel.stories.build if user_signed_in?
   end
   
   def create

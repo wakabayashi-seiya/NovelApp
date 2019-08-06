@@ -38,13 +38,6 @@ RSpec.describe User, type: :model do
         end
       end
       
-      context "email is too long(over 255 characters)" do
-        it "is invalid" do
-          @user.email = "a" * 244 + "@example.com"
-          expect(@user).not_to be_valid
-        end
-      end
-      
       context "password is too short(under 6 characters)" do
         it "is invalid" do
           @user.password = @user.password_confirmation = "a" * 5

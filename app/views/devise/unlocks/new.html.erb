@@ -1,0 +1,22 @@
+<% provide(:title, "ロックを解除したい方へ") %>
+
+<h1>ロックを解除したい方へ</h1>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <p>ロック解除用のメールを送信します</p>
+    <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
+      <%= f.full_error :unlock_token %>
+
+      <%= f.input :email,
+                  required: true,
+                  label: "メールアドレス",
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+
+      <%= f.button :submit, "送信" %>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

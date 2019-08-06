@@ -1,0 +1,27 @@
+<div class="membership">
+  <%- if controller_name != 'sessions' %>
+    <p>すでに会員の方は......<%= link_to "こちら", new_session_path(resource_name) %><br /></p>
+  <% end %>
+
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <p>新規会員登録は......<%= link_to "こちら", new_registration_path(resource_name) %><br /></p>
+  <% end %>
+
+  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <p>パスワードを忘れた方は......<%= link_to "こちら", new_password_path(resource_name) %><br /></p>
+  <% end %>
+
+  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+　  <p>会員登録の際、本登録用メールが送信されなかった方は......<%= link_to "こちら", new_confirmation_path(resource_name) %><br /></p>
+  <% end %>
+
+  <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+    <p>ロックを解除したい方は......<%= link_to "こちら", new_unlock_path(resource_name) %><br /></p>
+  <% end %>
+
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+    <% end %>
+  <% end %>
+</div>
