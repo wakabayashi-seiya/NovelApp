@@ -18,6 +18,10 @@ gem 'jbuilder',     '2.7.0'
 gem 'summernote-rails'
 gem 'simple_form'
 gem 'devise'
+gem 'cancancan'
+gem 'rails_admin'
+gem 'omniauth-twitter'
+gem 'dotenv-rails'
 
 group :development, :test do
   # gem 'sqlite3', '1.3.13'
