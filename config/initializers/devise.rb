@@ -262,8 +262,8 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   
  
-  config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'],
-  callback_url: "https://19be09bec85546f08e77c0ddb94a671a.vfs.cloud9.ap-northeast-1.amazonaws.com/users/auth/twitter/callback"
+  config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
+  # callback_url: "https://19be09bec85546f08e77c0ddb94a671a.vfs.cloud9.ap-northeast-1.amazonaws.com/users/auth/twitter/callback"
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
