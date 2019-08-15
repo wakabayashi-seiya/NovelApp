@@ -9,7 +9,7 @@ default: &default
   timeout: 5000
   username: ec2-user
   password: novels
-  host: <%=ENV['IP']%>
+  host: <%= ENV.fetch('DATABASE_HOST', '127.0.0.1') %>
 
 development:
   <<: *default
