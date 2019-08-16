@@ -23,5 +23,7 @@ test:
   database:  academic_app_dev
 
 production:
-  <<: *default
-  database:  academic_app_dev
+  url: <%= ENV['DATABASE_URL'] %>
+   
+  # <<: *default
+  # database:  academic_app_dev
