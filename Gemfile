@@ -22,13 +22,12 @@ gem 'cancancan'
 gem 'rails_admin'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
+gem 'pg', '0.20.0'
 
 group :development, :test do
-  # gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
   gem 'rspec-rails' 
   gem 'factory_girl_rails'
-  gem 'pg', '0.20.0'
 end
 
 group :development do
@@ -48,7 +47,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.20.0'
   gem 'fog', '1.42'
 end
 
