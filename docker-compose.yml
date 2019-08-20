@@ -8,9 +8,12 @@ services:
       - datavol:/var/lib/postgresql/data
   web:
     build: .
+    user: "501:501"
     command: /bin/sh -c "rm -f /home/ec2-user/environment/academic_app/tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
     volumes:
       - .:/academic_app
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
     ports:
       - "8080:8080"
     depends_on:
