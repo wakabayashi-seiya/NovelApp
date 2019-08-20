@@ -25,7 +25,7 @@ RSpec.describe "Users signup", type: :request do
       post users_path, params: { user: { name: "",
                                          email: "",
                                          password: "",
-                                         password: "",
+                                         password_confirmation: "",
                                          field: "" } }
     }.not_to change(User, :count)
     expect(@mail_array.count).to eq(0)
