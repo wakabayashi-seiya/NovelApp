@@ -7,8 +7,8 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: ec2-user
-  password: novels
+  username: <%= ENV.fetch('DATABASE_USER', 'ec2-user') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD', 'novels') %>
   host: <%= ENV.fetch('DATABASE_HOST', '127.0.0.1') %>
 
 development:

@@ -1,7 +1,10 @@
 version: '3'
 services:
   db:
-    image: postgres:11.4
+    image: postgres:11.2
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=mysecretpassword1234"
     ports:
       - '5432:5432'
     volumes:
@@ -16,7 +19,13 @@ services:
       - /etc/passwd:/etc/passwd:ro
     ports:
       - "8080:8080"
+    environment:
+      - "DATABASE_PORT=5432"
+      - "DATABASE_USER=postgres"
+      - "DATABASE_PASSWORD=mysecretpassword1234"
+      - "POSTGRES_DB=academic_app_dev"
     depends_on:
       - db
 volumes:
   datavol:
+
