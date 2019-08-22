@@ -22,9 +22,9 @@ jobs:
       - run:
           name: change authority(schema.rb)
           command: sudo chmod a+rwx db/schema.rb
-       - run:
+      - run:
           name: change authority(tmp)
-          command: sudo chmod -R a+rwx tmp
+          command: sudo chmod -R a+rwx tmp 
       - run:
           name: "before_test: setup db"
           command: docker-compose run web rails db:create db:migrate
