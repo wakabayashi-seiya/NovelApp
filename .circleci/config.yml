@@ -27,7 +27,7 @@ jobs:
           command: docker-compose run web rails db:create db:migrate
       - run:
           name: change authority(tmp/cache)
-          command: sudo chmod a+rwx -R tmp/cache/ 
+          command: sudo chmod a+rwx -R tmp/cache
       - run:
           name: test
           command: docker-compose run web rspec
