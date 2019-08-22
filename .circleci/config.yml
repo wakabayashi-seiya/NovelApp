@@ -20,11 +20,14 @@ jobs:
           name: sleep for waiting launch db
           command: sleep 1
       - run:
-          name: change authority
+          name: change authority(schema.rb)
           command: sudo chmod a+rwx db/schema.rb
       - run:
           name: "before_test: setup db"
           command: docker-compose run web rails db:create db:migrate
+      - run:
+          name: change authority(tmp/cache)
+          command: sudo chmod a+rwx -R tmp/cache/ 
       - run:
           name: test
           command: docker-compose run web rspec
