@@ -27,12 +27,7 @@ Rails.application.routes.draw do
   delete '/logout', to: "sessions#destroy"
   get '/set', to: "users#set"
   
-  # resources :users
-  resources :users do
-    member do
-      get :recent, :colection, :likes, :comment
-    end
-  end
+  resources :users 
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :notes
