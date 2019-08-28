@@ -46,6 +46,8 @@ class NovelsController < ApplicationController
     @novels = Novel.paginate(page: params[:page]).search(params[:search])
   end
   
+  
+  
   def search
   end
   

@@ -9,7 +9,6 @@
       </ul>
       <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
-        <li class="nav-item"><%= link_to "小説管理", colection_user_path(current_user.id), class: "nav-link"  %></li>
         <li class="nav-item"><%= link_to "受信ボックス", box_path, class: "nav-link"  %></li>
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
@@ -20,12 +19,8 @@
             <div class="dropdown-divider"></div>
             <%= link_to "小説を書く", new_novel_path, class: "dropdown-item"  %>
             <%= link_to "近況ノートを書く", new_note_path, class: "dropdown-item"  %>
-            <%= link_to "おすすめレビュー", comment_user_path(current_user), class: "dropdown-item"  %>
             <div class="dropdown-divider"></div>
-            <%= link_to "本棚", likes_user_path(current_user), class: "dropdown-item"  %>
-            
-            <div class="dropdown-divider"></div>
-            <%= link_to "アカウント設定", set_path, class: "dropdown-item" %>
+            <%= link_to "アカウント設定", "#", class: "dropdown-item" %>
             <%= link_to "プロフィール設定", edit_user_registration_path, class: "dropdown-item" %>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
