@@ -1,6 +1,6 @@
 class NovelsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :edit, :destroy]
-  before_action :correct_user_novel, only: [:edit, :update, :destroy]
+  before_action :find_novel, only: [:edit, :update, :destroy]
   
   def new
     @novel = current_user.novels.build if user_signed_in?
@@ -46,67 +46,6 @@ class NovelsController < ApplicationController
     @novels = Novel.paginate(page: params[:page]).search(params[:search])
   end
   
-  
-  
-  def search
-  end
-  
-  def sf
-    @genre = Genre.first
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def dw
-    @genre = Genre.find(2)
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def cw
-    @genre = Genre.find(3)
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def love
-    @genre = Genre.find(4)
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def horror
-    @genre = Genre.find(5)
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def mystery
-    @genre = Genre.find(6)
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def suspense
-    @genre = Genre.find(7)
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def essay
-    @genre = Genre.find(8)
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def history
-    @genre = Genre.find(9)
-    @novels = @genre.novels.reverse_order
-  end
-  
-  def complete
-    @tag = Tag.find(1)
-    @novels = @tag.novels.reverse_order
-  end
-  
-  def incomplete
-    @tag = Tag.find(2)
-    @novels = @tag.novels.reverse_order
-  end
-  
-    
   private
   
     def novel_params
@@ -115,10 +54,8 @@ class NovelsController < ApplicationController
                                     tag_ids: [])
     end
     
-    def correct_user_novel
+    def find_novel
       @novel = current_user.novels.find_by(id: params[:id])
       redirect_to root_url if @novel.nil?
     end
-  
-  
 end

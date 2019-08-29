@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :edit, :update]
-  before_action :correct_user_note, only: [:edit, :update, :destroy]
+  before_action :find_note, only: [:edit, :update, :destroy]
   
   def new
     @note = current_user.notes.build if user_signed_in?
@@ -38,16 +38,13 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
   
-  def index
-  end
-
   private
   
     def note_params
       params.require(:note).permit(:title, :text)
     end
     
-    def correct_user_note
+    def find_note
       @note = current_user.notes.find_by(id: params[:id])
       redirect_to root_url if @note.nil?
     end

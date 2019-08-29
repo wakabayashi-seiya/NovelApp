@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   
-  
   protected
 
   def configure_permitted_parameters
@@ -18,10 +17,4 @@ class ApplicationController < ActionController::Base
         redirect_to root_url
       end
     end
-    
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to root_url unless current_user == @user
-    end
-    
 end

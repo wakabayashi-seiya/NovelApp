@@ -17,6 +17,9 @@ class StaticPagesController < ApplicationController
     @favorites = @user.favorites.all
   end
   
+  def search
+  end
+  
   private
     
     def read
