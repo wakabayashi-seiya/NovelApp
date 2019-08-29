@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :correct_novel, only: [:new, :create]
-  before_action :correct_user_review, only: [:edit, :update, :destroy]
+  before_action :find_novel, only: [:new, :create]
+  before_action :find_review, only: [:edit, :update, :destroy]
   
   def new
     @review = @novel.reviews.build if user_signed_in?
@@ -29,7 +29,6 @@ class ReviewsController < ApplicationController
   end
   
   def show
-    
   end
   
   def destroy
@@ -44,11 +43,11 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:title, :text, :user_id)
     end
   
-    def correct_novel
+    def find_novel
       @novel = Novel.find_by(id: params[:novel_id])
     end
     
-    def correct_user_review
+    def find_review
       @review = current_user.reviews.find_by(id: params[:id])
       redirect_to root_url if @review.nil?
     end      

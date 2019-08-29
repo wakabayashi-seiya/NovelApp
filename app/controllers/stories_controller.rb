@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_action :current_novel, only: [:new, :create, :edit, :update, :destroy]
-  before_action :current_novel_story, only: [:edit, :update, :destroy]
+  before_action :find_novel, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_story, only: [:edit, :update, :destroy]
   
   def new
     @story = @novel.stories.build if user_signed_in?
@@ -46,12 +46,12 @@ class StoriesController < ApplicationController
       params.require(:story).permit(:title, :text)
     end
     
-    def current_novel
+    def find_novel
       @novel = current_user.novels.find_by(id: params[:novel_id])
       redirect_to root_url if @novel.nil?
     end
     
-    def current_novel_story
+    def find_story
       @story = @novel.stories.find_by(id: params[:id])
       redirect_to root_url if @story.nil?
     end

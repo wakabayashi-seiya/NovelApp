@@ -1,0 +1,2 @@
+module GenreNovelsHelper
+end
