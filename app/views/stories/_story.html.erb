@@ -6,7 +6,6 @@
                                edit_novel_story_path(story.novel.id, story.id) %> | <%= link_to "削除", 
                                                                                      novel_story_path(story.novel.id, story.id),
                                                                                      method: :delete,
-                                                                                     data: { confirm: "本当によろしいですか？" } %>
-    </span>
+                                                                                     data: { confirm: "本当によろしいですか？" } %></span>
   <% end %>
 </li>

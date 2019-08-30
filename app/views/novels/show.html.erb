@@ -3,26 +3,22 @@
 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="<%= @novel.user.field %>さんの作品「<%= @novel.title %>」を読む！" data-url="<%= request.url %>" data-lang="ja" data-show-count="false">Tweet</a>
 
 <h1>
-<% if @novel.image? %>
-  <%= image_tag @novel.image.url, size: '150x200' %>
-<% else %>
-  <%= image_tag("book-icon.png", size: '150x200') %>
-<% end %>
+  <% if @novel.image? %>
+    <%= image_tag @novel.image.url, size: '150x200' %>
+  <% else %>
+    <%= image_tag("book-icon.png", size: '150x200') %>
+  <% end %>
 </h1>
 
 <h1><%= @novel.title %></h1>
-<span class="author">
-  <h3>作者: <%= @novel.user.field %></h3>
-</span>
+<span class="author"><h3>作者: <%= @novel.user.field %></h3></span>
 <h2>
   <% @novel.tags.each do |tag| %>
     <h4><span class="badge badge-secondary"><%= tag.name %></span></h4>
   <% end %> 
 </h2>
 
-<span class="favorite">
-  <%= render 'favorites/like' %>
-</span>
+<span class="favorite"><%= render 'favorites/like' %></span>
 
 <div class="col-md-10 offset-md-1">
   <nav class="nav navbar-expand-md navbar-ligth bg-ligth">
@@ -41,9 +37,7 @@
         <h4><%= @novel.catchphrase %></h4>
       </div>
       <div class="col-md-6">
-        <p>
-          <%= simple_format @novel.outline %>
-        </p>
+        <p><%= simple_format @novel.outline %></p>
       </div>
     </div>
   </section>
@@ -121,22 +115,7 @@
             <li>
               <h4><%= link_to novel.title, novel %></h4>
               <section class="novel_information">
-                <p>ジャンル: <%= novel.genre.name %></p>
-                  <% if !novel.keyword_five.nil? %>
-                    <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %> <%= novel.keyword_five %></p>
-                  <% elsif novel.keyword_one.nil? %>
-                    <p>関連キーワード: 未設定</p>
-                  <% elsif novel.keyword_two.nil? %>
-                    <p>関連キーワード: <%= novel.keyword_one %></p>
-                  <% elsif novel.keyword_three.nil? %>
-                    <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %></p>
-                  <% elsif novel.keyword_four.nil? %>
-                    <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %></p>
-                  <% elsif novel.keyword_five.nil? %>
-                    <p>関連キーワード: <%= novel.keyword_one %> <%= novel.keyword_two %> <%= novel.keyword_three %> <%= novel.keyword_four %></p>
-                  <% end %>
-                <span class="update_date">更新日: <%= novel.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
-                <span class="fas fa-book" area-hidden="true"></span><%= @favorites.count %> 
+                <%= render "shared/keyword", novel: novel %>
               </section>
             </li>
           <% end %>

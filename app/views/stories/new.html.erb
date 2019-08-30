@@ -6,15 +6,8 @@
   <div class="col-md-6 offset-md-3">
     <%= simple_form_for(@story, url: novel_stories_path) do |f| %>
       <%= render 'shared/error_explanation', model: f.object %>
-      
-      <section class="story_title">
-      <%= f.input :title, label: "タイトル", placeholder: "(例) 第〇話 □□□□□" %>
-      </section>
-      
-      <section class="story_text">
-      <%= f.input :text, label: "本文", as: :summernote %>
-      </section>
-    
+      <section class="story_title"><%= f.input :title, label: "タイトル", placeholder: "(例) 第〇話 □□□□□" %></section>
+      <section class="story_text"><%= f.input :text, label: "本文", as: :summernote %></section>
       <%= f.submit "公開", class: 'btn btn-primary' %>
     <% end %> 
   </div>

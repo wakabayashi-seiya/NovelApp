@@ -6,11 +6,8 @@
   <div class="col-md-6 offset-md-1">
     <%= simple_form_for(@note, url: notes_path) do |f| %>
       <%= render 'shared/error_explanation', model: f.object %>
-
       <%= f.input :title, label: "タイトル" %>
-      
       <%= f.input :text, label: "本文" %>
-      
       <%= f.submit "公開", class: 'btn btn-primary' %>
     <% end %>
   </div>

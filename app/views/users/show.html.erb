@@ -9,10 +9,8 @@
   </div>
   <div class="col-md-8">
    <p><%= simple_format @user.introduction %></p>
-   <% if current_user.admin? %>
-     <p>
-       <%= link_to "管理画面へ", "/admin" %>
-     </p>
+   <% if current_user&.admin? %>
+     <p><%= link_to "管理画面へ", "/admin" %></p>
    <% end %>
   </div>
   <div class="col-md-10 offset-md-1">
@@ -27,28 +25,28 @@
   </div>
   <div class="col-md-10 offset-md-1">
     <section id="user_novels">
-      <% if @user.novels.any? %>
+      <% if @user.novels.present? %>
         <h3>小説 (<%= @user.novels.count %>)</h3>
         <ul class="novels"><%= render @novels %></ul>
         <%= will_paginate @novels %>
       <% end %>
     </section>
     <section id="user_favorites">
-      <% if @user.favorites.any? %>
+      <% if @user.favorites.present? %>
         <h3>本棚 (<%= @user.favorites.count %>)</h3>
         <ul class="favorites"><%= render @favorites %></ul>
         <%= will_paginate @favorites %>
       <% end %>
     </section>
     <section id="user_notes">
-      <% if @user.notes.any? %>
+      <% if @user.notes.present? %>
         <h3>近況ノート (<%= @user.notes.count %>)</h3>
         <ul class="notes"><%= render @notes %></ul>
         <%= will_paginate @notes %>
       <% end %>
     </section>
     <section id="user_reviews">
-      <% if @user.reviews.any? %>
+      <% if @user.reviews.present? %>
         <h3>おすすめレビュー (<%= @user.reviews.count %>)</h3>
         <ul class="review_novel">
           <% @reviews.each do |review| %>
