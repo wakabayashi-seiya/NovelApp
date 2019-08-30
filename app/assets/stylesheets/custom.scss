@@ -1,43 +1,60 @@
 @import "bootstrap";
 @import "summernote-bs4";
 
-
 h1 {
   text-align: center;
 }
-
-
 
 .membership {
   border-top: medium solid #0000ff;
   margin-top: 40px;
 }
 
-.notes {
+.discription {
+  margin-top: 30px;
+  padding: 20px;
+  border: 5px solid #99FFFF;
+}
+
+.main {
+  margin-top: 140px;
+}
+
+// user
+
+.review_novel {
   list-style: none;
   li {
     padding: 10px 0;
     border-top: 1px solid #C0C0C0;
   }
-  .timestamp {
-    color: #6c757d;
+  .review_title_name {
+    font-size: 110%;
+    font-weight: bold;
   }
-  .notetitle {
-    margin-left: 50px;
+  .review_user {
+    margin-left: 10px;
+  }
+  .review_text_field {
+    display: block;
+    margin-top: 10px;
   }
   .edit_delete {
     float: right;
   }
+  .novel_user {
+    display: block;
+    color: #6c757d;
+  }
+  .novel_information {
+    background-color: #DDFFFF;
+  .update_date {
+    margin-right: 10px;
+  }
+  }
 }
 
-.note_timestamp {
-  float: right;
-}
-
-.back {
-  margin-top: 100px;
-  float: right;
-}
+// novels
 
 .novels {
   list-style: none;
@@ -60,41 +77,12 @@ h1 {
   }
 }
 
-.stories {
-  list-style: none;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #C0C0C0;
-  }
-  .story_title {
-    margin-left: 50px;
-  }
-  .edit_delete {
-    float: right;
-  }
+.author {
+  float: right;
 }
 
-.reviews {
-  list-style: none;
-  li {
-    margin-top: 20px;
-    padding: 10px 0;
-    border-top: 1px solid #C0C0C0;
-  }
-  .review_title_name {
-    font-size: 110%;
-    font-weight: bold;
-  }
-  .review_user {
-    margin-left: 10px;
-  }
-  .review_text_field {
-    display: block;
-    margin-top: 10px;
-  }
-  .edit_delete {
-    float: right;
-  }
+.novel_image {
+  text-align: center;
 }
 
 #contents_field {
@@ -109,24 +97,6 @@ h1 {
 
 #reviews_field {
   margin-top: 70px;
-}
-
-.favorites {
-  list-style: none;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #C0C0C0;
-  }
-  .novel_user {
-    display: block;
-    color: #6c757d;
-  }
-  .novel_outline {
-    display: block;
-  }
-  .novel_information {
-    background-color: #DDFFFF;
-  }
 }
 
 #infomation_field {
@@ -162,6 +132,111 @@ h1 {
   }
 }
 
+// notes
+
+.notes {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #C0C0C0;
+  }
+  .timestamp {
+    color: #6c757d;
+  }
+  .notetitle {
+    margin-left: 50px;
+  }
+  .edit_delete {
+    float: right;
+  }
+}
+
+.note_timestamp {
+  float: right;
+}
+
+.back {
+  margin-top: 100px;
+  float: right;
+}
+
+// stories
+
+.stories {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #C0C0C0;
+  }
+  .story_title {
+    margin-left: 50px;
+  }
+  .edit_delete {
+    float: right;
+  }
+}
+
+.story_contents {
+  .story_text {
+    margin-top: 40px;
+  }
+}
+
+// reviews
+
+.reviews {
+  list-style: none;
+  li {
+    margin-top: 20px;
+    padding: 10px 0;
+    border-top: 1px solid #C0C0C0;
+  }
+  .review_title_name {
+    font-size: 110%;
+    font-weight: bold;
+  }
+  .review_user {
+    margin-left: 10px;
+  }
+  .review_text_field {
+    display: block;
+    margin-top: 10px;
+  }
+  .edit_delete {
+    float: right;
+  }
+}
+
+.review_title {
+  margin-top: 30px;
+}
+
+.review_text {
+  margin-top: 30px;
+}
+
+// favorites
+
+.favorites {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #C0C0C0;
+  }
+  .novel_user {
+    display: block;
+    color: #6c757d;
+  }
+  .novel_outline {
+    display: block;
+  }
+  .novel_information {
+    background-color: #DDFFFF;
+  }
+}
+
+// search
+
 .from_genre {
   margin-top: 60px;
   ul {
@@ -186,6 +261,14 @@ h1 {
   }
 }
 
+.from_word {
+  margin-top: 30px;
+  padding: 20px;
+  border: 5px solid #99FFFF;
+}
+
+// home_page
+
 .ranking {
   list-style: none;
   li {
@@ -204,58 +287,7 @@ h1 {
   }
 }
 
-.from_word {
-  margin-top: 30px;
-  padding: 20px;
-  border: 5px solid #99FFFF;
-}
-
-
-.review_novel {
-  list-style: none;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #C0C0C0;
-  }
-  .review_title_name {
-    font-size: 110%;
-    font-weight: bold;
-  }
-  .review_user {
-    margin-left: 10px;
-  }
-  .review_text_field {
-    display: block;
-    margin-top: 10px;
-  }
-  .edit_delete {
-    float: right;
-  }
-  .novel_user {
-    display: block;
-    color: #6c757d;
-  }
-  .novel_information {
-    background-color: #DDFFFF;
-  .update_date {
-    margin-right: 10px;
-  }
-  }
-}
-
-.author {
-  float: right;
-}
-
-.novel_image {
-  text-align: center;
-}
-
-.discription {
-  margin-top: 30px;
-  padding: 20px;
-  border: 5px solid #99FFFF;
-}
+// new_episode_message_box
 
 .new_message_box {
   margin-top: 30px;
@@ -281,6 +313,8 @@ h1 {
   }
 }
 
+// help
+
 .news {
   h3 {
     font-weight: bold;
@@ -290,6 +324,8 @@ h1 {
     font-size: 120%;
   }
 }
+
+// footer
 
 body,
 #wrapper {
@@ -306,6 +342,7 @@ footer {
   }
 }
 
+// about_page
 
 .about_read {
   margin-top: 40px;
@@ -328,22 +365,3 @@ footer {
   margin-top: 80px;
   margin-bottom: 40px;
 }
-
-.story_contents {
-  .story_text {
-    margin-top: 40px;
-  }
-}
-
-.main {
-  margin-top: 140px;
-}
-
-.review_title {
-  margin-top: 30px;
-}
-
-.review_text {
-  margin-top: 30px;
-}
-
