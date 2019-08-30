@@ -2,7 +2,7 @@
   <span class="timestamp"><%= note.created_at.strftime("%Y-%m-%d %H:%M") %></span>
   <span class="notetitle"><%= link_to note.title, note %></span>
   <% if current_user == note.user %>
-  <span class="edit_delete"><%= link_to "編集", edit_note_path(note) %> | <%= link_to "削除", note, method: :delete,
-                                                                           data: { confirm: "本当にいいですか？"} %></span>
+    <span class="edit_delete"><%= link_to "編集", edit_note_path(note) %> | <%= link_to "削除", note, method: :delete,
+                                                                             data: { confirm: "本当にいいですか？"} %></span>
   <% end %>
 </li>

@@ -7,7 +7,6 @@
     <%= simple_form_for(@review, url: novel_reviews_path) do |f| %>
       <%= render 'shared/error_explanation', model: f.object %>
       <%= f.hidden_field :user_id, value: current_user.id %>
-       
       <section class="review_title">
         <h3>ひとこと紹介</h3>
         <p>この小説の魅力をひとことでご記入ください</p>
