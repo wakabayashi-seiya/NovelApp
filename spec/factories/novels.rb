@@ -12,7 +12,7 @@ FactoryGirl.define do
     association :user, factory: :user
     association :genre, factory: :genre
   end
-  
+
   factory :other_user_novel, class: Novel do
     id 2
     title "other"
@@ -26,7 +26,7 @@ FactoryGirl.define do
     association :genre, factory: :genre
     association :user, factory: :other_user
   end
-  
+
   factory :invalid_novel, class: Novel do
     id 3
     title ""
@@ -40,7 +40,7 @@ FactoryGirl.define do
     association :genre, factory: :genre
     association :user, factory: :user
   end
-  
+
   factory :other_novel, class: Novel do
     id 4
     title "other_title"
@@ -54,5 +54,4 @@ FactoryGirl.define do
     association :genre, factory: :genre
     association :user, factory: :user
   end
-  
 end
