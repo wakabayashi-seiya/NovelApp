@@ -3,5 +3,4 @@ FactoryGirl.define do
     id 1
     name "SF"
   end
-  
 end

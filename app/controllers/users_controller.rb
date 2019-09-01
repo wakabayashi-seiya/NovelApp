@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  
   def show
     @user = User.find(params[:id])
     @notes = @user.notes.paginate(page: params[:page])
@@ -7,5 +8,4 @@ class UsersController < ApplicationController
     @favorites = @user.favnovels.reverse_order.paginate(page: params[:page])
     @reviews = @user.reviews.paginate(page: params[:page])
   end
-    
 end

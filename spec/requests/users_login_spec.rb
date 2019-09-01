@@ -4,7 +4,7 @@ RSpec.describe "Users login", type: :request do
   before do
     @user = create(:user)
   end
-  
+
   example "invalid login information" do
     get new_user_session_path
     expect(response).to render_template(:new)
@@ -12,7 +12,7 @@ RSpec.describe "Users login", type: :request do
     expect(user_signed_in?).to be_falsey
     expect(response).to render_template(:new)
   end
-  
+
   example "valid login information" do
     get new_user_session_path
     expect(response).to render_template(:new)
@@ -24,6 +24,4 @@ RSpec.describe "Users login", type: :request do
     expect(user_signed_in?).to be_falsey
     expect(response).to redirect_to root_url
   end
-  
-  
 end

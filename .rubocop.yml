@@ -6,5 +6,18 @@ require:
 
 AllCops:
   Exclude:
-    - db/schema.rb
+    - 'db/**/*'
+    - 'config/**/*'
     - 'vendor/**/*'
+    - 'script/**/*'
+    - 'node_modules/**/*'
+    - 'test/**/*'
+    - 'spec/**/*'
+    - 'bin/**/*'
+
+Metrics/AbcSize:
+  Max: 40
+Metrics/LineLength:
+  Max: 200
+Style/Documentation:
+  Enabled: false
