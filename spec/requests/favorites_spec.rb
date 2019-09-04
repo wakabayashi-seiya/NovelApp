@@ -25,6 +25,11 @@ RSpec.describe "Favorites", type: :request do
     end.to change(@other_user.favorites, :count).by(1)
     get novel_path(@novel)
     expect(response.body).to include('本棚から外す')
+    expect do
+      delete favorite_path, params: { novel_id: @novel.id }
+    end.to change(@other_user.favorites, :count).by(-1)
+    get novel_path(@novel)
+    expect(response.body).to include('本棚に追加')
   end
   
 end
