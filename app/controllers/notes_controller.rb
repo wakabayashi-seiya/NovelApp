@@ -32,7 +32,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     flash[:success] = 'ノートを1件削除しました'
-    redirect_to recent_user_path
+    redirect_to user_path
   end
 
   def show

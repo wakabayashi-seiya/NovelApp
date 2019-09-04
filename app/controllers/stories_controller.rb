@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class StoriesController < ApplicationController
+  before_action :logged_in_user, only: %i[new create edit destroy]
   before_action :find_novel, only: %i[new create edit update destroy]
   before_action :find_story, only: %i[edit update destroy]
 

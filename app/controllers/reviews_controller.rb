@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ReviewsController < ApplicationController
+  before_action :logged_in_user, only: %i[new create edit destroy]
   before_action :find_novel, only: %i[new create]
   before_action :find_review, only: %i[edit update destroy]
 
