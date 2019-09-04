@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe NovelsController, type: :controller do
+RSpec.describe NotesController, type: :controller do
   describe "GET #new" do
     before do
       @user = create(:user)
-      @genre = create(:genre)
     end
 
     context "when logged in user" do
@@ -12,8 +11,8 @@ RSpec.describe NovelsController, type: :controller do
         login_user @user
         get :new
       end
-      it "assgins the requested novel to @novel" do
-        expect(assigns(:novel)).to be_a_new(Novel)
+      it "assgins the requested note to @note" do
+        expect(assigns(:note)).to be_a_new(Note)
       end
 
       it "renders the new template" do
@@ -34,9 +33,8 @@ RSpec.describe NovelsController, type: :controller do
   describe "POST #create" do
     before do
       @user = create(:user)
-      @genre = create(:genre)
-      @novel = attributes_for(:novel, user_id: @user.id, genre_id: @genre.id)
-      @invalid_novel = attributes_for(:invalid_novel, user_id: @user.id, genre_id: @genre.id)
+      @note = attributes_for(:note, user_id: @user.id)
+      @invalid_note = attributes_for(:invalid_note, user_id: @user.id)
     end
 
     context "when logged in user" do
@@ -44,21 +42,21 @@ RSpec.describe NovelsController, type: :controller do
         login_user @user
       end
       context "when the requested params is valid" do
-        it "saves the new novel in the database" do
+        it "saves the new note in the database" do
           expect do
-            post :create, params: { novel: @novel }
-          end.to change(Novel, :count).by(1)
+            post :create, params: { note: @note }
+          end.to change(Note, :count).by(1)
         end
 
         it "redirects to root_url" do
-          post :create, params: { novel: @novel }
+          post :create, params: { note: @note }
           expect(response).to redirect_to root_url
         end
       end
 
       context "when the requested params is invalid" do
         it "renders the new template" do
-          post :create, params: { novel: @invalid_novel }
+          post :create, params: { note: @invalid_note }
           expect(response).to render_template :new
         end
       end
@@ -66,7 +64,7 @@ RSpec.describe NovelsController, type: :controller do
 
     context "when not logged in user" do
       it "redirects to root_url" do
-        post :create, params: { novel: @novel }
+        post :create, params: { note: @note }
         expect(response).to redirect_to root_url
       end
     end
@@ -76,31 +74,30 @@ RSpec.describe NovelsController, type: :controller do
     before do
       @user = create(:user)
       @other_user = create(:other_user)
-      @genre = create(:genre)
-      @novel = create(:novel, user_id: @user.id, genre_id: @genre.id)
-      @other_user_novel = create(:other_novel, user_id: @other_user.id, genre_id: @genre.id)
+      @note = create(:note, user_id: @user.id)
+      @other_user_note = create(:other_note, user_id: @other_user.id)
     end
 
     context "when logged in user" do
       before do
         login_user @user
       end
-      context "when the requested novel is current_user's novel" do
+      context "when the requested note is current_user's note" do
         before do
-          get :edit, params: { id: @novel.id }
+          get :edit, params: { id: @note.id }
         end
 
-        it "assgins the requested novel to @novel" do
-          expect(assigns(:novel)).to eq @novel
+        it "assgins the requested note to @note" do
+          expect(assigns(:note)).to eq @note
         end
         it "renders the edit template" do
           expect(response).to render_template :edit
         end
       end
 
-      context "when the requested novel is not current_user's novel" do
+      context "when the requested note is not current_user's note" do
         before do
-          get :edit, params: { id: @other_user_novel.id }
+          get :edit, params: { id: @other_user_note.id }
         end
         it "redirects to root_url" do
           expect(response).to redirect_to root_url
@@ -110,7 +107,7 @@ RSpec.describe NovelsController, type: :controller do
 
     context "when not logged in user" do
       before do
-        get :edit, params: { id: @novel.id }
+        get :edit, params: { id: @note.id }
       end
       it "redirects to root_url" do
         expect(response).to redirect_to root_url
@@ -122,35 +119,34 @@ RSpec.describe NovelsController, type: :controller do
     before do
       @user = create(:user)
       @other_user = create(:other_user)
-      @genre = create(:genre)
-      @novel = create(:novel, user_id: @user.id, genre_id: @genre.id)
-      @original_title = @novel.title
+      @note = create(:note, user_id: @user.id)
+      @original_title = @note.title
     end
 
-    context "when the requested novel is current_user's novel" do
+    context "when the requested note is current_user's note" do
       before do
         login_user @user
       end
 
       context "when the requested params is valid" do
         before do
-          patch :update, params: { id: @novel.id, novel: attributes_for(:novel, title: "update_title") }
+          patch :update, params: { id: @note.id, note: attributes_for(:note, title: "update_title") }
         end
 
-        it "updates the novel in the database" do
-          @novel.reload
-          expect(@novel.title).to eq "update_title"
+        it "updates the note in the database" do
+          @note.reload
+          expect(@note.title).to eq "update_title"
         end
       end
 
       context "when the requested params is invalid" do
         before do
-          patch :update, params: { id: @novel.id, novel: attributes_for(:novel, title: " ") }
+          patch :update, params: { id: @note.id, note: attributes_for(:note, title: " ") }
         end
 
-        it "does not update the novel in the database" do
-          @novel.reload
-          expect(@novel.title).to eq @original_title
+        it "does not update the note in the database" do
+          @note.reload
+          expect(@note.title).to eq @original_title
         end
         it "renders the edit template" do
           expect(response).to render_template :edit
@@ -158,10 +154,10 @@ RSpec.describe NovelsController, type: :controller do
       end
     end
 
-    context "when the requested novel is not current_user's novel" do
+    context "when the requested note is not current_user's note" do
       before do
         login_user @other_user
-        patch :update, params: { id: @novel.id, novel: attributes_for(:novel, title: "update_title") }
+        patch :update, params: { id: @note.id, note: attributes_for(:note, title: "update_title") }
       end
       it "redirects to root_url" do
         expect(response).to redirect_to root_url
@@ -173,40 +169,39 @@ RSpec.describe NovelsController, type: :controller do
     before do
       @user = create(:user)
       @other_user = create(:other_user)
-      @genre = create(:genre)
-      @novel = create(:novel, user_id: @user.id, genre_id: @genre.id)
+      @note = create(:note, user_id: @user.id)
     end
 
-    context "when the requested novel is current_user's novel" do
+    context "when the requested note is current_user's note" do
       before do
         login_user @user
       end
 
-      it "destroy the novel in the database" do
+      it "destroy the note in the database" do
         expect do
-          delete :destroy, params: { id: @novel.id, novel: @novel }
-        end.to change(Novel, :count).by(-1)
+          delete :destroy, params: { id: @note.id, note: @note }
+        end.to change(Note, :count).by(-1)
       end
 
-      it "redirects to root_url" do
-        delete :destroy, params: { id: @novel.id, novel: @novel }
-        expect(response).to redirect_to root_url
+      it "redirects to user_path" do
+        delete :destroy, params: { id: @note.id, note: @note }
+        expect(response).to redirect_to user_path
       end
     end
 
-    context "when the requested novel is not current_user's novel" do
+    context "when the requested note is not current_user's note" do
       before do
         login_user @other_user
       end
 
-      it "does not destroy the novel in the database" do
+      it "does not destroy the note in the database" do
         expect do
-          delete :destroy, params: { id: @novel.id, novel: @novel }
-        end.not_to change(Novel, :count)
+          delete :destroy, params: { id: @note.id, note: @note }
+        end.not_to change(Note, :count)
       end
 
       it "redirects to root_url" do
-        delete :destroy, params: { id: @novel.id, novel: @novel }
+        delete :destroy, params: { id: @note.id, novel: @note }
         expect(response).to redirect_to root_url
       end
     end

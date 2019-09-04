@@ -4,9 +4,8 @@ class FavoritesController < ApplicationController
   def create
     @novel = Novel.find(params[:novel_id])
     current_user.like(@novel)
-    redirect_back(fallback_location: root_path)
     respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path) }
+      format.html { redirect_back(fallback_location: @novel) }
       format.js
     end
   end
@@ -14,9 +13,8 @@ class FavoritesController < ApplicationController
   def destroy
     @novel = Novel.find(params[:novel_id])
     current_user.unlike(@novel)
-    redirect_back(fallback_location: root_path)
     respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path) }
+      format.html { redirect_back(fallback_location: @novel) }
       format.js
     end
   end
