@@ -47,6 +47,10 @@
 
 * Docker(環境構築) 
 
+* CircleCI(CI/CDパイプライン)
+
+* Heroku(本番環境)
+
 * Simple_form
 
 * bootstrap 
