@@ -39,10 +39,10 @@ class NovelsController < ApplicationController
     @novel = Novel.find(params[:id])
     @novels = @novel.user.novels.all
     @stories = @novel.stories.paginate(page: params[:page])
-    @reviews = @novel.reviews.all
+    @reviews = @novel.reviews.paginate(page: params[:page])
     @favorites = @novel.favorites.all
   end
-
+  
   def index
     @novels = Novel.paginate(page: params[:page]).search(params[:search])
   end

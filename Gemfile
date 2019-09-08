@@ -3,8 +3,9 @@
 source 'https://rubygems.org'
 
 gem 'bcrypt',        '3.1.12'
+gem 'bootsnap', require: false
 gem 'bootstrap', '~> 4.1.1'
-gem 'bootstrap-will_paginate', '1.0.0'
+gem 'bootstrap-will_paginate'
 gem 'cancancan'
 gem 'carrierwave', '1.2.2'
 gem 'coffee-rails', '4.2.2'
@@ -16,14 +17,14 @@ gem 'mini_magick',   '4.7.0'
 gem 'omniauth-twitter'
 gem 'pg', '0.20.0'
 gem 'puma',         '3.9.1'
-gem 'rails',        '5.1.6'
+gem 'rails', '~> 5.2.0'
 gem 'rails_admin'
 gem 'sass-rails', '5.0.6'
 gem 'simple_form'
 gem 'summernote-rails'
 gem 'turbolinks',   '5.0.1'
 gem 'uglifier',     '3.2.0'
-gem 'will_paginate', '3.1.6'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug', '9.0.6', platform: :mri
