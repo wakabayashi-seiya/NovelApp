@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_08_08_031807) do
     t.string "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "lastaccesstime", default: "2019-09-09 03:17:25"
+    t.datetime "lastaccesstime", default: "2019-08-16 13:57:05"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

@@ -540,7 +540,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   fog (= 1.42)
-  fog-aws
   guard (= 2.13.0)
   jbuilder (= 2.7.0)
   jquery-rails (= 4.3.1)
