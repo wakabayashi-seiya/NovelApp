@@ -25,8 +25,7 @@ gem 'summernote-rails'
 gem 'turbolinks',   '5.0.1'
 gem 'uglifier',     '3.2.0'
 gem 'will_paginate'
-gem 'parser', '2.6.4.0'
-gem 'temple', '0.8.1'
+gem 'fog-aws'
 
 group :development, :test do
   gem 'byebug', '9.0.6', platform: :mri

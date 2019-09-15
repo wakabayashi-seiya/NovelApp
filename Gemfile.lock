@@ -540,13 +540,13 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   fog (= 1.42)
+  fog-aws
   guard (= 2.13.0)
   jbuilder (= 2.7.0)
   jquery-rails (= 4.3.1)
   listen (= 3.1.5)
   mini_magick (= 4.7.0)
   omniauth-twitter
-  parser (= 2.6.4.0)
   pg (= 0.20.0)
   puma (= 3.9.1)
   rails (~> 5.2.0)
@@ -561,7 +561,6 @@ DEPENDENCIES
   spring (= 2.0.2)
   spring-watcher-listen (= 2.0.1)
   summernote-rails
-  temple (= 0.8.1)
   turbolinks (= 5.0.1)
   tzinfo-data
   uglifier (= 3.2.0)

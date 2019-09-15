@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   include CarrierWave::MiniMagick
-  process resize_to_limit: [150, 200]
+  # process resize_to_limit: [120, 180]
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -52,4 +52,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  protected
+ 
+  def secure_token
+     var = :"@#{mounted_as}_secure_token"
+     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  end
 end
