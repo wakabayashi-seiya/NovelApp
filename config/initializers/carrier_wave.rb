@@ -1,3 +1,7 @@
+require 'carrierwave/storage/abstract'
+require 'carrierwave/storage/file'
+require 'carrierwave/storage/fog'
+
 CarrierWave.configure do |config|
   if Rails.env.production?
     config.storage :fog
@@ -10,9 +14,9 @@ CarrierWave.configure do |config|
       region: ENV['S3_REGION'],
       path_style: true
     }
+    config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" }
   else
     config.storage :file
-    # config.enable_processing = false if Rails.env.test?
   end
 end
  
