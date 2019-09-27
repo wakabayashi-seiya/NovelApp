@@ -12,9 +12,7 @@ WORKDIR /academic_app
 COPY Gemfile /academic_app/Gemfile
 COPY Gemfile.lock /academic_app/Gemfile.lock
 RUN bundle install
-COPY package.json /academic_app/package.json
-COPY yarn.lock /academic_app/yarn.lock
-RUN yarn install
 COPY . /academic_app
+RUN `yarn install
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
