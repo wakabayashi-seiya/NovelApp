@@ -1,5 +1,6 @@
 FROM ruby:2.6.2
 ENV DATABASE_HOST db
+ENV NODE_ENV development
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
         && apt-get install -y nodejs
 RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
@@ -13,6 +14,7 @@ COPY Gemfile /academic_app/Gemfile
 COPY Gemfile.lock /academic_app/Gemfile.lock
 RUN bundle install
 COPY . /academic_app
-RUN NODE_ENV=development yarn install
+RUN yarn install
+RUN yarn upgrade
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
