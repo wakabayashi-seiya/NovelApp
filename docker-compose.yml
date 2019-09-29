@@ -12,6 +12,7 @@ services:
       - datavol:/var/lib/postgresql/data
   webpack-dev-server:
     build: .
+    user: "501:501"
     environment:
       - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
     command: bundle exec bin/webpack-dev-server
