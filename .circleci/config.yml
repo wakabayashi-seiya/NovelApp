@@ -30,7 +30,7 @@ jobs:
           command: docker-compose run web rails db:create db:migrate
       - run:
           name: webpack
-          command: docker-compose run web -e RAILS_ENV=test bundle exec rails webpacker:compile
+          command: docker-compose run -e RAILS_ENV=test web bundle exec rails webpacker:compile
       - run:
           name: test
           command: docker-compose run web rspec
