@@ -14,7 +14,7 @@ services:
     build: .
     environment:
       - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
-    command: bundle exec bin/webpack-dev-server
+    command: yarn install && bundle exec bin/webpack-dev-server
     volumes:
       - .:/academic_app
     ports:
