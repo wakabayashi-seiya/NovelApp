@@ -30,7 +30,7 @@ jobs:
           command: docker-compose run web rails db:create db:migrate
       - run:
           name: yarn install
-          command: docker-compose run web yarn install
+          command: docker-compose run web sudo yarn install
       - run:
           name: webpack
           command: docker-compose run -e RAILS_ENV=test web bundle exec rails webpacker:compile
