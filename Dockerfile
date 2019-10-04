@@ -15,5 +15,6 @@ COPY Gemfile.lock /academic_app/Gemfile.lock
 RUN bundle install
 COPY . /academic_app
 RUN yarn install
+RUN bundle exec rails webpacker:compile
 RUN RAILS_ENV=test bundle exec rails webpacker:compile
 CMD ["rails", "server", "-b", "0.0.0.0"]
