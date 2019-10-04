@@ -51,6 +51,10 @@ GEM
     ast (2.4.0)
     autoprefixer-rails (9.6.1.1)
       execjs
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.12)
     bindex (0.8.1)
     bootsnap (1.4.5)
@@ -77,6 +81,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     crass (1.0.4)
     database_rewinder (0.9.1)
     devise (4.7.1)
@@ -362,6 +367,8 @@ GEM
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
+    rack-proxy (0.6.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.3)
@@ -417,6 +424,12 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       optimist (~> 3.0)
+    react-rails (2.6.0)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     remotipart (1.4.3)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -516,6 +529,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (4.0.7)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -552,6 +569,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rails-controller-testing
   rails_admin
+  react-rails
   rspec-rails
   rubocop
   rubocop-performance
@@ -565,6 +583,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (= 3.2.0)
   web-console (= 3.5.1)
+  webpacker
   will_paginate
 
 BUNDLED WITH

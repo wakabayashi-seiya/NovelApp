@@ -10,6 +10,15 @@ services:
       - '5432:5432'
     volumes:
       - datavol:/var/lib/postgresql/data
+  webpack-dev-server:
+    build: .
+    environment:
+      - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
+    command: bundle exec bin/webpack-dev-server
+    volumes:
+      - .:/academic_app
+    ports:
+      - "3035:3035"
   web:
     build: .
     user: "501:501"
@@ -24,8 +33,10 @@ services:
       - "DATABASE_PORT=5432"
       - "DATABASE_USER=postgres"
       - "DATABASE_PASSWORD=mysecretpassword1234"
+      - "WEBPACKER_DEV_SERVER_HOST=webpack-dev-server"
     depends_on:
       - db
+      - webpack-dev-server
 volumes:
   datavol:
 

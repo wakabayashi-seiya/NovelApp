@@ -1,6 +1,6 @@
 <% provide(:title, @novel.title) %>
 <p>この小説をシェアする</p>
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="<%= @novel.user.field %>さんの作品「<%= @novel.title %>」を読む！" data-url="<%= request.url %>" data-lang="ja" data-show-count="false">Tweet</a>
+<%= react_component("share_button", url: request.url, title: @novel.user.field + "さんの作品「" + @novel.title + "」を読む！") %>
 
 <h1>
   <% if @novel.image? %>
