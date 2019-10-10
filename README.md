@@ -30,7 +30,7 @@
 
 * ページネーション機能(will_paginate)
 
-* 小説をTwitterで共有 
+* 小説をSNSで共有(react-share) 
 
 
 ## コメント関連
@@ -53,9 +53,15 @@
 
 * Simple_form
 
+* webpacker(Reactの導入)
+
+* React 
+
 * bootstrap 
 
 * S3(表紙の画像のアップロード先)
+
+* SendGrid(本番環境でのメール送信) 
 
 * Rspec(テスト)
 
