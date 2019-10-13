@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   VALID_NAME_REGEX = /\A[a-zA-Z0-9\-_]+\z/.freeze
   validates :name, presence: true, format: { with: VALID_NAME_REGEX },
-                   length: { maximum: 50 }, uniqueness: true
+                   length: { maximum: 20 }, uniqueness: true
 
   validates :field, presence: true
 
