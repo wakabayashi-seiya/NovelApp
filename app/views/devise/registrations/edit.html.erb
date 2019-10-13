@@ -6,7 +6,7 @@
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
-  　   <%= f.input :name, label: "ユーザーID", placeholder: "ユーザーID(英数字6文字以上)" %>
+  　   <%= f.input :name, label: "ユーザーID", placeholder: "ユーザーID(英数字20文字以内)" %>
       
       <%= f.input :field,  label: "ペンネーム", placeholder: "好きなペンネームを入力" %>
     

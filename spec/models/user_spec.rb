@@ -27,9 +27,9 @@ RSpec.describe User, type: :model do
     end
 
     describe "characters" do
-      context "name is too long(over 50 characters)" do
+      context "name is too long(over 20 characters)" do
         it "is invalid" do
-          @user.name = "a" * 51
+          @user.name = "a" * 21
           expect(@user).not_to be_valid
         end
       end
