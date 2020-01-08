@@ -49,6 +49,8 @@
 
 * CircleCI(CI/CDパイプライン)
 
+* CloudFront(CDN)
+
 * Heroku(本番環境)
 
 * Simple_form
