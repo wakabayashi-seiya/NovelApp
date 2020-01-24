@@ -25,6 +25,7 @@
   Rails6からは、バリデーション機能も実装されているが、Carrierwaveのほうが、各種細かい設定が可能になること、Rails5.2.3からRails6への移行のコストなどを考えると、そのまま標準ライブラリのCarrierwaveを使用し続けるのが得策であると考えた。
 
 * エピソードの執筆/編集/削除(WYSIWYGエディターとして、summernoteを使用)
+
 　※summernoteでは、simple_formを使ったほうが、簡単に実装できる。そして、simple_formを使えば、form_for内のコードをもっとすっきりさせることができる。これらを考えて、simple_formを導入することにした。
 
 * 小説を本棚(お気に入り)に追加/外す機能(Ajax)
