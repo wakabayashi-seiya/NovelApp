@@ -7,7 +7,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap', '~> 4.1.1'
 gem 'bootstrap-will_paginate'
 gem 'cancancan'
-gem 'carrierwave', '1.2.2'
+gem 'carrierwave', '1.3.2'
 gem 'coffee-rails', '4.2.2'
 gem 'devise'
 gem 'dotenv-rails'
