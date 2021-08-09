@@ -10,33 +10,19 @@ services:
       - '5432:5432'
     volumes:
       - datavol:/var/lib/postgresql/data
-  webpack-dev-server:
-    build: .
-    environment:
-      - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
-    command: bundle exec bin/webpack-dev-server
-    volumes:
-      - .:/academic_app
-    ports:
-      - "3035:3035"
   web:
     build: .
-    user: "501:501"
-    command: /bin/sh -c "rm -f /home/ec2-user/environment/academic_app/tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
     volumes:
       - .:/academic_app
-      - /etc/group:/etc/group:ro
-      - /etc/passwd:/etc/passwd:ro
     ports:
       - "8080:8080"
     environment:
       - "DATABASE_PORT=5432"
       - "DATABASE_USER=postgres"
       - "DATABASE_PASSWORD=mysecretpassword1234"
-      - "WEBPACKER_DEV_SERVER_HOST=webpack-dev-server"
     depends_on:
       - db
-      - webpack-dev-server
 volumes:
   datavol:
 

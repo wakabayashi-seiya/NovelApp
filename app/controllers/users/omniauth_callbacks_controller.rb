@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Twitter認証用のクラス
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
     callback_from :twitter
